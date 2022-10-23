@@ -25,10 +25,11 @@
                         <td>{{ $hike->difficulty}}</td>
                         <td>{{ $hike->map}}</td>
                         <td>{{ $hike->description}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{route("admin.show", $hike->id)}}">Review</a>
+                        </td>
                     </tr>
-                    <td>
-                        <a class="btn btn-primary" href="{{route("admin.review", $hike->id) }}">Review</a>
-                    </td>
+
                 @endif
             @endforeach
 </table>

@@ -10,14 +10,21 @@ class AdminController extends Controller
     public function index()
     {
         $hikes = Hike::all();
-
         return view('admin.index', ['hikes' => $hikes]);
     }
 
-    public function review($id)
+    /**
+     * Display the form with the chosen hike.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
         $hike = Hike::findOrFail($id);
         return view("admin.review", ['hike' => $hike]);
     }
+
+
 
 }

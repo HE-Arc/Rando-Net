@@ -14,13 +14,19 @@ class HikeController extends Controller
         return view('hike.index', ['hikes' => $hikes]);
     }
 
+    public function show() //used for debug purpous
+    {
+        $hikes = Hike::all();
+
+        return view('hike.index', ['hikes' => $hikes]);
+    }
     public function create()
     {
         //See if authors or tags are needed
         return view("hike.create");
     }
 
-    public function update(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         //$hike = Hike::findOrFail($id)->update($request->all());
         $hike = Hike::findOrFail($id);
@@ -43,6 +49,33 @@ class HikeController extends Controller
 
         $hike->update();
 
+        return redirect()->route("admin.index");
+    }
+
+    /**
+     * Delete the chosen hike
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public static function destroy($id)
+    {
+        $hike = Hike::findOrFail($id);
+        $hike->delete();
+        return redirect()->route("admin.index");
+    }
+
+
+    //l'appel au function destroy et edit ne fonctionne pas...
+    public function update(Request $request, $id)
+    {
+
+        if ($_REQUEST['btnSubmit'] == "validate") {
+            HikeController::edit($request,$id);
+
+        } else if ($_REQUEST['btnSubmit'] == "reject") {
+            HikeController::destroy($id);
+        }
         return redirect()->route("admin.index");
     }
 
