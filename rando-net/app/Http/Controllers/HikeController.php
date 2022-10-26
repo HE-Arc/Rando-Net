@@ -31,7 +31,7 @@ class HikeController extends Controller
         //$hike = Hike::findOrFail($id)->update($request->all());
         $hike = Hike::findOrFail($id);
         $request->validate([
-            'name' => 'required|min:5|max:30',
+            'name' => 'required|min:5|max:50',
             'region' => 'required|min:5|max:30',
             'coordinates' => 'required|min:15|max:15',
             'difficulty' => 'required|integer|gte:0|lte:5',
@@ -82,7 +82,7 @@ class HikeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:5|max:30',
+            'name' => 'required|min:5|max:50',
             'region' => 'required|min:5|max:30',
             'coordinates' => 'required|min:15|max:15',
             'difficulty' => 'required|integer|gte:0|lte:5',
