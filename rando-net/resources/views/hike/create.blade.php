@@ -18,38 +18,6 @@
                             <input type="text" name="name" class="form-control" id="inputName">
                         </div>
 
-                        <script>
-                            function addDefault(tag, event)
-                            {
-                                console.log(event.keyCode);
-
-                                if(event.keyCode != 8) //everything other than backspace correct the input
-                                {
-                                    //don't want more than 15 chars
-                                    if(tag.value.length >= 15)
-                                    {
-                                        event.preventDefault();
-                                        return false;
-                                    }
-
-                                    //number between 48 and 57
-                                    if(event.keyCode < 48 || event.keyCode > 57)
-                                    {
-                                        console.log("NOT NUMBER");
-                                        event.preventDefault();
-                                        return false;
-                                    }
-
-                                    //add for the place holder
-                                    if(tag.value.length == 3 || tag.value.length == 11)
-                                        tag.value += '\'';
-                                    if(tag.value.length == 7)
-                                        tag.value += '/';
-                                }
-
-
-                            }</script>
-
                         <div class="row mt-3">
                             <div class="form-group col-6">
                                 <label for="inputRegion">Region</label>
@@ -80,7 +48,7 @@
                         @if ($errors->any())
                         <div class="alert alert-danger mt-3 col-12">
                             <strong>Whoops!</strong> Il y a un problème avec vos entrées.<br><br>
-                            <ul>
+                                <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
@@ -94,4 +62,36 @@
         </div>
     </div>
 </form>
+
+<script>
+    function addDefault(tag, event)
+    {
+        console.log(event.keyCode);
+
+        if(event.keyCode != 8) //everything other than backspace correct the input
+        {
+            //don't want more than 15 chars
+            if(tag.value.length >= 15)
+            {
+                event.preventDefault();
+                return false;
+            }
+
+            //number between 48 and 57
+            if(event.keyCode < 48 || event.keyCode > 57)
+            {
+                console.log("NOT NUMBER");
+                event.preventDefault();
+                return false;
+            }
+
+            //add for the place holder
+            if(tag.value.length == 3 || tag.value.length == 11)
+                tag.value += '\'';
+            if(tag.value.length == 7)
+                tag.value += '/';
+        }
+
+
+    }</script>
 @endsection

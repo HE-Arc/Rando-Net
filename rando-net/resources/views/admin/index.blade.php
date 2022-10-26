@@ -2,6 +2,10 @@
 
 @section("content")
 <h1>Hikes to be reviewed</h1>
+
+@if(sizeof($hikes) == 0)
+    No hikes need to be reviewd, go take a walk outside
+@else
 <table class="table">
     <thead>
         <tr>
@@ -15,7 +19,7 @@
     </thead>
 
     @foreach ($hikes as $hike)
-                @if(!$hike->validated)
+                @if(!$hike->validated) <!-- Normally receive only the non validated one but a double verification is never to much-->
                     <tr>
                         <td>{{ $hike->name }}</td>
                         <td>{{ $hike->region }}</td>
@@ -30,4 +34,5 @@
                 @endif
             @endforeach
 </table>
+@endif
 @endsection
