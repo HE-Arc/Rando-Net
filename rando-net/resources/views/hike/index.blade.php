@@ -19,7 +19,7 @@
     </thead>
 
     @foreach ($hikes as $hike)
-                @if($hike->validated)
+                @if($hike->validated) <!-- Normally receive only the validated one but a double verification is never to much-->
                     <tr>
                         <td>{{ $hike->name }}</td>
                         <td>{{ $hike->region }}</td>
