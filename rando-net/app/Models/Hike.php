@@ -22,7 +22,6 @@ class Hike extends Model
      * @param Request
      * @param bool
      */
-
     function modify(Request $req, bool $validate)
     {
         $this->name = $req->name;
