@@ -18,6 +18,38 @@
                             <input type="text" name="name" class="form-control" id="inputName">
                         </div>
 
+                        <script>
+                            function addDefault(tag, event)
+                            {
+                                console.log(event.keyCode);
+
+                                if(event.keyCode != 8) //everything other than backspace correct the input
+                                {
+                                    //don't want more than 15 chars
+                                    if(tag.value.length >= 15)
+                                    {
+                                        event.preventDefault();
+                                        return false;
+                                    }
+
+                                    //number between 48 and 57
+                                    if(event.keyCode < 48 || event.keyCode > 57)
+                                    {
+                                        console.log("NOT NUMBER");
+                                        event.preventDefault();
+                                        return false;
+                                    }
+
+                                    //add for the place holder
+                                    if(tag.value.length == 3 || tag.value.length == 11)
+                                        tag.value += '\'';
+                                    if(tag.value.length == 7)
+                                        tag.value += '/';
+                                }
+
+
+                            }</script>
+
                         <div class="row mt-3">
                             <div class="form-group col-6">
                                 <label for="inputRegion">Region</label>
@@ -26,7 +58,7 @@
 
                             <div class="form-group col-6">
                                 <label for="inputCoordinates">Coordinates</label>
-                                <input type="text" name="coordinates" class="form-control" id="inputCoordinates">
+                                <input type="text" name="coordinates" class="form-control" id="inputCoordinates" onkeydown="addDefault(this, event);" pattern="\d{3}'\d{3}\/\d{3}'\d{3}" placeholder="999'999/999'999" max=15>
                             </div>
 
                             <div class="form-group col-6">
