@@ -2,8 +2,6 @@
 
 @section("content")
 <h1>Hikes to be reviewed</h1>
-
-
 <table class="table">
     <thead>
         <tr>
@@ -29,7 +27,6 @@
                             <a class="btn btn-primary" href="{{route("admin.show", $hike->id)}}">Review</a>
                         </td>
                     </tr>
-
                 @endif
             @endforeach
 </table>

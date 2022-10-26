@@ -17,7 +17,7 @@ class AdminController extends Controller
      * Display the form with the chosen hike.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
