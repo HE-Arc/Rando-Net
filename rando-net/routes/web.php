@@ -26,4 +26,4 @@ Route::get('/', [HikeController::class, 'index'])->name('hike');
 
 Route::resource('hike', HikeController::class);
 Route::resource('admin', AdminController::class);
-
+Route::resource('user', UserController::class);
