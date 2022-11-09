@@ -16,6 +16,9 @@ class Hike extends Model
         "name", "region", "coordinates", "difficulty", "map", "description"
     ];
 
+
+
+
     /**
      * Modify the hike locally
      *
