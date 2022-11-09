@@ -15,6 +15,7 @@
             <th scope="col">Difficulty</th>
             <th scope="col">Map</th>
             <th scope="col">Description</th>
+            <th scope="col">Submitted by</th>
         </tr>
     </thead>
 
@@ -27,6 +28,7 @@
                         <td>{{ $hike->difficulty}}</td>
                         <td>{{ $hike->map}}</td>
                         <td>{{ $hike->description}}</td>
+                        <td>{{ $hike->submittedBy}}</td>
                     </tr>
                 @endif
             @endforeach

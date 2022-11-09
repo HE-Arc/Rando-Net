@@ -100,6 +100,7 @@ class HikeController extends Controller
         $hike->validated = False;
 
 
+
         $hike->save();
 
         return redirect()->route("hike.index"); // ->with("success", "Created successfully");
