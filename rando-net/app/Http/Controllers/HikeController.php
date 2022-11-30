@@ -91,6 +91,7 @@ class HikeController extends Controller
 
         $hike->modify($request, false);
 
+
         $hike->save();
 
         return redirect()
