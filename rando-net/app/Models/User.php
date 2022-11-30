@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -45,5 +46,16 @@ class User extends Authenticatable
     public function hikes()
     {
         return $this->hasMany(Hike::class);
+    }
+
+    public static function validateLogin(Request $request)
+    {
+        $user = User::where("name", $request->name)->get();
+        print($user);
+    }
+
+    public static function validateSignin(Request $request)
+    {
+        print($request);
     }
 }

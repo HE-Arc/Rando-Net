@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HikeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,8 @@ Route::get('/', function () {
 
 Route::resource('hikes', HikeController::class);
 Route::resource('admins', AdminController::class);
-Route::resource('users', UserController::class);
+//Route::resource('users', UserController::class); //TODO when Dorian could think straight for once in his life
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
+Route::get('/signin', [AuthController::class, 'signin'])->name('signin');
+Route::post('/validate-signin', [AuthController::class, 'validateSignin'])->name('validate_signin');
