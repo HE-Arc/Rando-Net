@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 use function PHPSTORM_META\type;
 
-
 class Hike extends Model
 {
     use HasFactory;
@@ -41,7 +40,6 @@ class Hike extends Model
      *
      * @return Array
      */
-
     public function request_validator()
     {
         $req = [

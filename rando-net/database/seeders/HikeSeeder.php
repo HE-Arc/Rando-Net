@@ -18,7 +18,11 @@ class HikeSeeder extends Seeder
         Hike::truncate();
         $hikes = [
             [
+<<<<<<< HEAD
                 "name" => "sMarche sur les crêtes de Tête de Ran",
+=======
+                "name" => "Marche sur les crêtes de Tête de Ran",
+>>>>>>> d963283 (fixed merge conflict)
                 "region" => "Tête de Ran",
                 "coordinates" => '555\'844/211\'844',
                 "difficulty" => 2,
