@@ -19,8 +19,6 @@
             </thead>
 
             @foreach ($hikes as $hike)
-                @if (!$hike->validated)
-                    <!-- Normally receive only the non validated one but a double verification is never to much-->
                     <tr>
                         <td>{{ $hike->name }}</td>
                         <td>{{ $hike->region }}</td>
@@ -29,10 +27,9 @@
                         <td>{{ $hike->map }}</td>
                         <td>{{ $hike->description }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('admin.show', $hike->id) }}">Review</a>
+                            <a class="btn btn-primary" href="{{route("admins.show", $hike->id)}}">Review</a>
                         </td>
                     </tr>
-                @endif
             @endforeach
         </table>
     @endif

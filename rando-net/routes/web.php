@@ -22,8 +22,8 @@ Route::get('/', function () {
 
 //Route::get('/user', [UserController::class, 'index'])->name('user');
 //Route::get('/hikes' , [HikeController::class, 'index'])->name('hike');
-Route::get('/', [HikeController::class, 'index'])->name('hike');
+//Route::get('/', [HikeController::class, 'index'])->name('hike');
 
-Route::resource('hike', HikeController::class);
-Route::resource('admin', AdminController::class);
-Route::resource('user', UserController::class);
+Route::resource('hikes', HikeController::class);
+Route::resource('admins', AdminController::class);
+Route::resource('users', UserController::class);

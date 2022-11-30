@@ -27,6 +27,6 @@ class AdminController extends Controller
     public function show($id)
     {
         $hike = Hike::findOrFail($id);
-        return view("admin.review", ["hike" => $hike]);
+        return view("admins.review", ['hike' => $hike]);
     }
 }

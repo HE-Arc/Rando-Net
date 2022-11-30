@@ -1,10 +1,10 @@
 @extends('layout.app')
 
-@section('content')
-    <!-- hike.control -->
-    <form action="{{ route('hike.update', $hike->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+@section("content")
+<!-- hikes.control -->
+<form action="{{route("hikes.update", $hike->id)}}" method="POST">
+    @csrf
+    @method("PUT")
 
         <div class="row">
             <div class="col-12 col-lg-6 offset-0 offset-lg-3">
@@ -72,6 +72,22 @@
                                 value="reject">Reject</button>
 
                         </div>
+<<<<<<< HEAD:rando-net/resources/views/admin/review.blade.php
+=======
+                        @if ($errors->any())
+                            <div class="alert alert-danger mt-3 col-12">
+                                <strong>Whoops!</strong> Their is a problem with your entries.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <button type="submit" name="btnSubmit" class="btn btn-primary mt-3" value="validate">Validate</button>
+                       <button type="submit" name="btnSubmit" class="btn btn-primary mt-3" value="reject">Reject</button>
+
+>>>>>>> 77c85d1 (fixed according to rendu intermediaire comments):rando-net/resources/views/admins/review.blade.php
                     </div>
                 </div>
             </div>
