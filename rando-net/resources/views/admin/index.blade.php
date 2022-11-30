@@ -2,10 +2,13 @@
 
 @section("content")
 <h1>Hikes to be reviewed</h1>
+<<<<<<< HEAD
 
 @if(sizeof($hikes) == 0)
     No hikes need to be reviewd, go take a walk outside
 @else
+=======
+>>>>>>> f20e4be (fixed merge conflict)
 <table class="table">
     <thead>
         <tr>

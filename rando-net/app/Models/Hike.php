@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use function PHPSTORM_META\type;
 
+
 class Hike extends Model
 {
     use HasFactory;
@@ -23,6 +24,7 @@ class Hike extends Model
      * @param Request
      * @param bool
      */
+
     function modify(Request $req, bool $validate)
     {
         $this->name = $req->name;
@@ -39,6 +41,7 @@ class Hike extends Model
      *
      * @return Array
      */
+
     public function request_validator()
     {
         $req = [
