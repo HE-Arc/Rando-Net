@@ -9,8 +9,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $hikes = Hike::all();
-        return view('admin.index', ['hikes' => $hikes]);
+        $hikes = Hike::where('validated', "==", "0")->get();
+        return view('admins.index', ['hikes' => $hikes]);
     }
 
     /**
@@ -22,7 +22,7 @@ class AdminController extends Controller
     public function show($id)
     {
         $hike = Hike::findOrFail($id);
-        return view("admin.review", ['hike' => $hike]);
+        return view("admins.review", ['hike' => $hike]);
     }
 
 

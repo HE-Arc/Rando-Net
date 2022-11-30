@@ -9,27 +9,24 @@ class HikeController extends Controller
 {
     public function index()
     {
-        $hikes = Hike::all();
-
-        return view('hike.index', ['hikes' => $hikes]);
+        $hikes = Hike::where('validated', "!=", "0")->get();
+        return view('hikes.index', ['hikes' => $hikes]);
     }
 
     public function show() //used for debug purpous
     {
         $hikes = Hike::all();
 
-        return view('hike.index', ['hikes' => $hikes]);
+        return view('hikes.index', ['hikes' => $hikes]);
     }
     public function create()
     {
         //See if authors or tags are needed
-        return view("hike.create");
+        return view("hikes.create");
     }
 
     public function edit(Request $request, $id)
     {
-        //$hike = Hike::findOrFail($id)->update($request->all());
-        $hike = Hike::findOrFail($id);
         $request->validate([
             'name' => 'required|min:5|max:50',
             'region' => 'required|min:5|max:30',
@@ -38,6 +35,7 @@ class HikeController extends Controller
             'map' => 'required',
             'description' => 'required',
         ]);
+        $hike = Hike::findOrFail($id);
 
         $hike->name = $request->name;
         $hike->region = $request->region;
@@ -46,10 +44,10 @@ class HikeController extends Controller
         $hike->map = $request->map;
         $hike->description = $request->description;
         $hike->validated = True;
-
+        $hike->submittedBy = 1; //TODO
         $hike->update();
 
-        return redirect()->route("admin.index");
+        return redirect()->route("admins.index");
     }
 
     /**
@@ -62,7 +60,7 @@ class HikeController extends Controller
     {
         $hike = Hike::findOrFail($id);
         $hike->delete();
-        return redirect()->route("admin.index");
+        return redirect()->route("admins.index");
     }
 
 
@@ -76,7 +74,7 @@ class HikeController extends Controller
         } else if ($_REQUEST['btnSubmit'] == "reject") {
             HikeController::destroy($id);
         }
-        return redirect()->route("admin.index");
+        return redirect()->route("admins.index");
     }
 
     public function store(Request $request)
@@ -98,11 +96,11 @@ class HikeController extends Controller
         $hike->map = $request->map;
         $hike->description = $request->description;
         $hike->validated = False;
-
+        $hike->submittedBy = 1; //TODO
 
 
         $hike->save();
 
-        return redirect()->route("hike.index"); // ->with("success", "Created successfully");
+        return redirect()->route("hikes.index"); // ->with("success", "Created successfully");
     }
 }

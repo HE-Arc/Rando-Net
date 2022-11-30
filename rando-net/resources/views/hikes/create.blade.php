@@ -2,7 +2,7 @@
 
 @section("content")
 
-<form action="{{route("hike.store")}}" method="POST">
+<form action="{{route("hikes.store")}}" method="POST">
     @csrf
     <div class="row">
         <div class="col-12 col-lg-6 offset-0 offset-lg-3">
@@ -15,7 +15,7 @@
 
                         <div class="form-group col-12">
                             <label for="inputName">Name</label>
-                            <input type="text" name="name" class="form-control" id="inputName">
+                            <input type="text" name="name" class="form-control" id="inputName" value="{{old('name')}}">
                         </div>
 
                         <script>
@@ -53,27 +53,27 @@
                         <div class="row mt-3">
                             <div class="form-group col-6">
                                 <label for="inputRegion">Region</label>
-                                <input type="text" name="region" class="form-control" id="inputRegion">
+                                <input type="text" name="region" class="form-control" id="inputRegion" value="{{old('region')}}">
                             </div>
 
                             <div class="form-group col-6">
                                 <label for="inputCoordinates">Coordinates</label>
-                                <input type="text" name="coordinates" class="form-control" id="inputCoordinates" onkeydown="addDefault(this, event);" pattern="\d{3}'\d{3}\/\d{3}'\d{3}" placeholder="999'999/999'999" max=15>
+                                <input type="text" name="coordinates" class="form-control" id="inputCoordinates" value="{{old('coordinates')}}" onkeydown="addDefault(this, event);" pattern="\d{3}'\d{3}\/\d{3}'\d{3}" placeholder="999'999/999'999" max=15>
                             </div>
 
                             <div class="form-group col-6">
                                 <label for="inputDifficulty">Difficulty</label>
-                                <input type="text" name="difficulty" class="form-control" id="inputDifficulty">
+                                <input type="text" name="difficulty" class="form-control" id="inputDifficulty" value="{{old('difficulty')}}">
                             </div>
 
                             <div class="form-group col-6">
                                 <label for="inputMap">Map</label> <!-- il faut faire que le user puisse ajouter une image-->
-                                <input type="text" name="map" class="form-control" id="inputMap">
+                                <input type="text" name="map" class="form-control" id="inputMap" value="{{old('map')}}">
                             </div>
 
                             <div class="form-group col-6">
                                 <label for="inputDescription">Description</label>
-                                <input type="text" name="description" class="form-control" id="inputDescription">
+                                <input type="text" name="description" class="form-control" id="inputDescription" value="{{old('description')}}">
                             </div>
 
                         </div>

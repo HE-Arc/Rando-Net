@@ -1,10 +1,8 @@
 @extends("layout.app")
 
 @section("content")
-<h1>Hikes</h1>
+<h1>Hikes to be reviewed</h1>
 
-<!-- ajouter une randonnée-->
-<a href="{{route("hike.create")}}" class="btn btn-primary mb-2">Ajouter une randonnée</a>
 
 <table class="table">
     <thead>
@@ -15,12 +13,10 @@
             <th scope="col">Difficulty</th>
             <th scope="col">Map</th>
             <th scope="col">Description</th>
-            <th scope="col">Submitted by</th>
         </tr>
     </thead>
 
     @foreach ($hikes as $hike)
-                @if($hike->validated)
                     <tr>
                         <td>{{ $hike->name }}</td>
                         <td>{{ $hike->region }}</td>
@@ -28,9 +24,10 @@
                         <td>{{ $hike->difficulty}}</td>
                         <td>{{ $hike->map}}</td>
                         <td>{{ $hike->description}}</td>
-                        <td>{{ $hike->submittedBy}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{route("admins.show", $hike->id)}}">Review</a>
+                        </td>
                     </tr>
-                @endif
             @endforeach
 </table>
 @endsection
