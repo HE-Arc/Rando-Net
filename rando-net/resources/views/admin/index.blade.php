@@ -1,5 +1,6 @@
 @extends('layout.app')
 
+<<<<<<< HEAD
 @section('content')
     <h1>Hikes to be reviewed</h1>
 
@@ -21,6 +22,24 @@
             @foreach ($hikes as $hike)
                 @if (!$hike->validated)
                     <!-- Normally receive only the non validated one but a double verification is never to much-->
+=======
+@section("content")
+<h1>Hikes to be reviewed</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Region</th>
+            <th scope="col">Coordinates</th>
+            <th scope="col">Difficulty</th>
+            <th scope="col">Map</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+
+    @foreach ($hikes as $hike)
+                @if(!$hike->validated)
+>>>>>>> f20e4be (fixed merge conflict)
                     <tr>
                         <td>{{ $hike->name }}</td>
                         <td>{{ $hike->region }}</td>
