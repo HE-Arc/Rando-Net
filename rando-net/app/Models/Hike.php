@@ -11,6 +11,7 @@ use function PHPSTORM_META\type;
 class Hike extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         "name", "region", "coordinates", "difficulty", "map", "description"
     ];
