@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function index()
     {
         $hikes = Hike::where("validated", false)->get();
-        return view("admin.index", ["hikes" => $hikes]);
+        return view("admins.index", ["hikes" => $hikes]);
     }
 
     /**
