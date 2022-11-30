@@ -15,7 +15,7 @@ class HikeController extends Controller
     public function index()
     {
         $hikes = Hike::where("validated", true)->get();
-        return view("hike.index", ["hikes" => $hikes]);
+        return view("hikes.index", ["hikes" => $hikes]);
     }
 
     public function show() //used for debug purpous
@@ -100,6 +100,16 @@ class HikeController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required|min:5|max:50',
+            'region' => 'required|min:5|max:30',
+            'coordinates' => 'required|min:15|max:15',
+            'difficulty' => 'required|integer|gte:0|lte:5',
+            'map' => 'required',
+            'description' => 'required',
+        ]);
+
         $hike = new Hike();
         $hike->name = $request->name;
         $hike->region = $request->region;
