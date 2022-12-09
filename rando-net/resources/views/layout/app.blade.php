@@ -30,9 +30,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admins.index') }}">Admin</a>
                     </li>
+                    @if(Auth::user()==null)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('login') }}">User</a>
+                        </li>
+                    @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">User</a>
+                        <a class="nav-link"><?=Auth::user()->name?></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}">logout</a>
+                    </li>
+
+                    @endif
                 </ul>
             </div>
         </div>

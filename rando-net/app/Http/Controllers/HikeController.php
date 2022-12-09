@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hike;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HikeController extends Controller
 {
@@ -49,7 +50,7 @@ class HikeController extends Controller
         $hike->map = $request->map;
         $hike->description = $request->description;
         $hike->validated = True;
-        $hike->submittedBy = 1; //TODO
+        $hike->submittedBy = Auth::user()->id; //TODO
         $hike->update();
 
         return redirect()->route("admins.index");
@@ -118,8 +119,7 @@ class HikeController extends Controller
         $hike->map = $request->map;
         $hike->description = $request->description;
         $hike->validated = False;
-        $hike->submittedBy = 1; //TODO
-
+        $hike->submittedBy = Auth::user()->id; //TODO
 
         $hike->save();
 
