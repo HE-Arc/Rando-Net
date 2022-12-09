@@ -8,6 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\Constraint\IsEmpty;
+
+use function PHPUnit\Framework\assertIsNotNumeric;
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
 
 class User extends Authenticatable
 {
@@ -18,21 +25,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = ["name", "email", "password"];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ["password", "remember_token"];
 
     /**
      * The attributes that should be cast.
@@ -40,7 +40,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        "email_verified_at" => "datetime",
     ];
 
     public function hikes()
@@ -50,12 +50,12 @@ class User extends Authenticatable
 
     public static function validateLogin(Request $request)
     {
-        $user = User::where("name", $request->name)->get();
-        print($user);
+
     }
 
     public static function validateSignin(Request $request)
     {
-        print($request);
+
     }
 }
+

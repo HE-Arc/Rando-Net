@@ -12,7 +12,7 @@
     <div class="d-flex justify-content-center">
         <div class="col-8 mb-15" class="mb-15">
             <label for="exampleFormControlInput1" class="form-label">User name</label>
-            <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="My super pseudo">
+            <input  type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="My super pseudo" value="{{old('name')}}">
         </div>
     </div>
 

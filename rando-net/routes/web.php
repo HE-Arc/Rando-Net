@@ -4,6 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HikeController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckUser;
+use App\Http\Middleware\CheckVisitor;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,18 +20,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 //Route::get('/user', [UserController::class, 'index'])->name('user');
 //Route::get('/hikes' , [HikeController::class, 'index'])->name('hike');
 //Route::get('/', [HikeController::class, 'index'])->name('hike');
 
-Route::resource('hikes', HikeController::class);
-Route::resource('admins', AdminController::class);
+
+
+
+//ADMIN
+Route::middleware([CheckAdmin::class])->group(function(){
+    Route::resource('admins', AdminController::class);
+    Route::resource('hikes', HikeController::class);
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    });
+
+//USER
+Route::middleware([CheckUser::class])->group(function(){
+    Route::resource('hikes', HikeController::class);
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+//Non connected user
+Route::middleware([CheckVisitor::class])->group(function(){
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
+    Route::get('/signin', [AuthController::class, 'signin'])->name('signin');
+    Route::post('/validate-signin', [AuthController::class, 'validateSignin'])->name('validate_signin');
+});
+
+//All
+Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.index');
+    //TODO WITH THE TAG Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.tag');
+    Route::get('/', function () {
+        return redirect()
+                     ->route("hikes.index");
+    });
 //Route::resource('users', UserController::class); //TODO when Dorian could think straight for once in his life
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
-Route::get('/signin', [AuthController::class, 'signin'])->name('signin');
-Route::post('/validate-signin', [AuthController::class, 'validateSignin'])->name('validate_signin');
