@@ -41,7 +41,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">logout</a>
                     </li>
-
                     @endif
                 </ul>
             </div>
@@ -52,6 +51,11 @@
     <div class="container mt-3">
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+        @if ($message = Session::get('fail'))
+            <div class="alert alert-danger">
                 <p>{{ $message }}</p>
             </div>
         @endif

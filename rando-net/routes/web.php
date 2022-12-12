@@ -26,9 +26,6 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/hikes' , [HikeController::class, 'index'])->name('hike');
 //Route::get('/', [HikeController::class, 'index'])->name('hike');
 
-
-
-
 //ADMIN
 Route::middleware([CheckAdmin::class])->group(function(){
     Route::resource('admins', AdminController::class);
@@ -41,6 +38,7 @@ Route::middleware([CheckUser::class])->group(function(){
     Route::resource('hikes', HikeController::class);
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
 //Non connected user
 Route::middleware([CheckVisitor::class])->group(function(){
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -51,9 +49,10 @@ Route::middleware([CheckVisitor::class])->group(function(){
 
 //All
 Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.index');
-    //TODO WITH THE TAG Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.tag');
+//TODO WITH THE TAG Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.tag');
     Route::get('/', function () {
         return redirect()
                      ->route("hikes.index");
     });
+
 //Route::resource('users', UserController::class); //TODO when Dorian could think straight for once in his life

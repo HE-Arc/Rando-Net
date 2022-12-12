@@ -20,12 +20,12 @@ class CheckUser
         if(Auth::user()!=null)
         {
             //User is connected
-                return $next($request);
+            return $next($request);
 
         }
         return redirect()
                  ->route("login")
-                 ->with("success", "You are not connected");
+                 ->with("fail", "You are not connected");
 
     }
 }

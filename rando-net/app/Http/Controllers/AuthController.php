@@ -17,15 +17,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        // if(Auth::user() == null)
-        // {
-            return view("auth.login");
-        // }else
-        // {
-        //     return redirect()
-        //          ->route("hikes.index")
-        //          ->with("success", "connected");
-        // }
+        return view("auth.login");
     }
 
     public function authenticate(Request $request)
@@ -41,11 +33,9 @@ class AuthController extends Controller
            );
 
         if (Auth::attempt($credential)) {
-            //$user = User::where("name", $request->name)->get();
             Auth::loginUsingId($request->name);
 
-            //$request->session()->put('user', $user);
-            $request->session()->regenerate();
+            $request->session()->regenerate(); //Don't know if useful
             return redirect()
                  ->route("hikes.index")
                  ->with("success", "Logged in successfully");
@@ -69,6 +59,7 @@ class AuthController extends Controller
             "password" => "required",
             "confirmPassword" => "required",
         ]);
+
         if($request->password == $request->confirmPassword)
         {
             //Vérifier que le nom est unique
@@ -82,10 +73,9 @@ class AuthController extends Controller
                 $user->isAdmin = 0;
                 $user->save();
 
-                //user::validateLogin($request);
                 return redirect()
-                ->route("login")
-                ->with("success", "Signed in successfully");
+                    ->route("login")
+                    ->with("success", "Signed in successfully");
             }else // A User was found
             {
                 return back()->withErrors([
@@ -94,7 +84,7 @@ class AuthController extends Controller
             }
         }else{
         return back()->withErrors([
-            "name" => "Not the same password",
+            "name" => "Not the same passwords",
        ]);
     }
 }
