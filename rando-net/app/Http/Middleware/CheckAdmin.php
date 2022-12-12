@@ -24,11 +24,11 @@ class CheckAdmin
             }
             return redirect()
                 ->route("hikes.index")
-                ->with("success", "You are not Admin");
+                ->with("fail", "You are not Admin");
         }
         return redirect()
                  ->route("login")
-                 ->with("success", "You are not connected");
+                 ->with("fail", "You are not connected");
 
     }
 }

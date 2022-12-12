@@ -25,6 +25,6 @@ class CheckVisitor
         }
         return redirect()
                  ->route("hikes.index")
-                 ->with("success", "You are already connected");
+                 ->with("fail", "You are already connected");
     }
 }
