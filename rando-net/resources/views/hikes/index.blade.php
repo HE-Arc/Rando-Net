@@ -19,14 +19,13 @@
         </thead>
 
     @foreach ($hikes as $hike)
-                        <tr>
+                        <tr onclick="window.location='{{route('hikes.show', ['hike' => $hike])}}'" >
                         <td>{{ $hike->name }}</td>
                         <td>{{ $hike->region }}</td>
                         <td>{{ $hike->coordinates }}</td>
                         <td>{{ $hike->difficulty}}</td>
                         <td>{{ $hike->map}}</td>
                         <td>{{ $hike->description}}</td>
-                        <td>{{ $hike->submittedBy}}</td>
                     </tr>
             @endforeach
 </table>
