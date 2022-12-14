@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hike;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class HikeController extends Controller
@@ -27,7 +28,8 @@ class HikeController extends Controller
     public function create()
     {
         //See if authors or tags are needed
-        return view("hikes.create");
+        $tags = Tag::all();
+        return view("hikes.create", ['tags' => $tags]);
     }
 
     public function edit(Request $request, $id)

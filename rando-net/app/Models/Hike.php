@@ -16,7 +16,13 @@ class Hike extends Model
         "name", "region", "coordinates", "difficulty", "map", "description", "submittedBy"
     ];
 
-    function user() {
+    function user()
+    {
         return $this->belongsTo(User::class);
+    }
+
+    function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

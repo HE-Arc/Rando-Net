@@ -32,3 +32,6 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::get('/signin', [AuthController::class, 'signin'])->name('signin');
 Route::post('/validate-signin', [AuthController::class, 'validateSignin'])->name('validate_signin');
+
+Route::get('/show-tag', [TagController::class, 'index']);
+Route::post('/create-tag', [TagController::class, 'store']);

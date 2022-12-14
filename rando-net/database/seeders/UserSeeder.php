@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
+        //User::truncate();
         $users = [
             [
                 'name' => 'basicUser',
@@ -33,8 +33,7 @@ class UserSeeder extends Seeder
             ]
         ];
 
-        foreach($users as $user)
-        {
+        foreach ($users as $user) {
             User::create(
                 [
                     'name' => $user['name'],
@@ -44,6 +43,5 @@ class UserSeeder extends Seeder
                 ]
             );
         }
-
     }
 }

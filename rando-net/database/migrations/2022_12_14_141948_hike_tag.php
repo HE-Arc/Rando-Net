@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('hikes', function (Blueprint $table) {
-            $table->foreignId('submittedBy')->references('id')->on('users')->nullable()->constrained();
+        Schema::create('hike_tag', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('hike_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
         });
     }
 
@@ -25,9 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('hikes', function (Blueprint $table) {
-            $table->dropForeign(['submittedBy']);
-            $table->dropColumn('submittedBy');
-        });
+        Schema::dropIfExists('hike_tag');
     }
 };

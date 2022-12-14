@@ -84,27 +84,17 @@
                                 </div>
 
                                 {{-- Autre façon de faire des tags, à trouver la meilleure --}}
-                                {{-- <div class="form-group col-6">
+                                <div class="form-group col-6">
                                     <label for="inputTag">Tags</label>
                                     <select class="form-select" name="tags" aria-label="Default select example"
                                         id="inputTags">
-                                        <option selected>Tag</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option> <!--  value="{{ old('tags') }}" !-->
+                                        <option selected>None</option>
+                                        @foreach ($tags->all() as $tag)
+                                            <option>{{ $tag }}</option>
+                                        @endforeach
                                     </select>
                                     <button type="button" class="btn btn-primary">Ajouter</button>
-                                </div> --}}
-
-                                {{-- Autre façon de faire des tags, à trouver la meilleure --}}
-                                <div class="mb-3">
-                                    <label for="inputTags">Tags</label>
-                                    <input class="form-control col-6" type="text" data-role="tagsinput" name="tags">
-                                    @if ($errors->has('tags'))
-                                        <span class="text-danger">{{ $errors->first('tags') }}</span>
-                                    @endif
                                 </div>
-
                             </div>
                             @if ($errors->any())
                                 <div class="alert alert-danger mt-3 col-12">
