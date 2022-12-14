@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hike;
+<<<<<<< HEAD
 
+=======
+use App\Models\Tag;
+>>>>>>> f4b7187 (Tag schema)
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +58,8 @@ class HikeController extends Controller
     public function create()
     {
         //See if authors or tags are needed
-        return view("hikes.create");
+        $tags = Tag::all();
+        return view("hikes.create", ['tags' => $tags]);
     }
 
     public function edit(Request $request, $id)

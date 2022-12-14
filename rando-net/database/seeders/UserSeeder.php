@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
+        //User::truncate();
         $users = [
             [
                 "name" => "basicUser",
@@ -33,12 +33,23 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
+<<<<<<< HEAD
             User::create([
                 "name" => $user["name"],
                 "email" => $user["email"],
                 "password" => $user["password"],
                 "isAdmin" => $user["isAdmin"],
             ]);
+=======
+            User::create(
+                [
+                    'name' => $user['name'],
+                    'email' => $user['email'],
+                    'password' => $user['password'],
+                    'isAdmin' => $user['isAdmin'],
+                ]
+            );
+>>>>>>> f4b7187 (Tag schema)
         }
     }
 }
