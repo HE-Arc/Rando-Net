@@ -17,12 +17,9 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{route("hikes.index")}}">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+        <a class="navbar-brand" href="{{ route('hikes.index') }}">Home</a>
+        <div class="container-fluid justify-content-between">
+            <div class="d-flex" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Tag</a>
@@ -33,20 +30,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admins.index') }}">Admin</a>
                     </li>
-                    @if(Auth::user()==null)
+                    @if (Auth::user() == null)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('login') }}">User</a>
+                            <a class="nav-link" href="{{ route('login') }}">User</a>
                         </li>
                     @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('hikes.user_hikes') }}"><?=Auth::user()->name?></a>
-                    </li>
+                </ul>
+            </div>
+            <div class="d-flex" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">logout</a>
                     </li>
-                    @endif
-                </ul>
+
+                    <a class="navbar-brand" href="{{ route('hikes.user_hikes') }}"><?= Auth::user()->name ?></a>
+
             </div>
+            @endif
+            </ul>
         </div>
     </nav>
 

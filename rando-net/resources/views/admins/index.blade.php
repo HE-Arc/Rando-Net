@@ -19,16 +19,13 @@
             </thead>
 
             @foreach ($hikes as $hike)
-                    <tr>
+                    <tr id="hike" onclick="window.location='{{route('admins.show', $hike->id)}}'">
                         <td>{{ $hike->name }}</td>
                         <td>{{ $hike->region }}</td>
                         <td>{{ $hike->coordinates }}</td>
                         <td>{{ $hike->difficulty }}</td>
                         <td>{{ $hike->map }}</td>
                         <td>{{ $hike->description }}</td>
-                        <td>
-                            <a class="btn btn-primary" href="{{route("admins.show", $hike->id)}}">Review</a>
-                        </td>
                     </tr>
             @endforeach
         </table>

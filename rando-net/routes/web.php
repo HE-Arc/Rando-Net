@@ -54,7 +54,6 @@ Route::middleware([CheckVisitor::class])->group(function(){
 //All
 Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.index');
 Route::get('/hikes/{hike}', [HikeController::class, 'show'])->name('hikes.show');
-
 //TODO WITH THE TAG Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.tag');
     Route::get('/', function () {
         return redirect()
