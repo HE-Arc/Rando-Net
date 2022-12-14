@@ -1,8 +1,20 @@
-.checked {
+.checked
+{
     color : yellow;
     font-size : 20px;
-        }
-        .unchecked {
-            font-size : 20px;
-        }
-        #hike:hover {background-color: grey;}
+}
+.unchecked
+{
+    font-size : 20px;
+}
+#hike:hover
+{
+    background-color: grey;
+}
+#hikeimg
+{
+    max-height:500px;
+    max-width:500px;
+    height:auto;
+    width:auto;
+}
