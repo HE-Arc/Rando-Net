@@ -88,9 +88,8 @@
                                     <label for="inputTag">Tags</label>
                                     <select class="form-select" name="tags" aria-label="Default select example"
                                         id="inputTags">
-                                        <option selected>None</option>
                                         @foreach ($tags->all() as $tag)
-                                            <option>{{ $tag }}</option>
+                                            <option>{{ $tag->name }}</option>
                                         @endforeach
                                     </select>
                                     <button type="button" class="btn btn-primary">Ajouter</button>

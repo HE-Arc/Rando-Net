@@ -25,5 +25,14 @@ class TagSeeder extends Seeder
             ['name' => 'Panoramic view'],
             ['name' => 'River'],
         ];
+
+        foreach($tags as $tag)
+        {
+            Tag::create(
+                [
+                    'name' => $tag['name']
+                ]
+                );
+        }
     }
 }
