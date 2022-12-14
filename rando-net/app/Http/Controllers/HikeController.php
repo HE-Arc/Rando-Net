@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hike;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 
 class HikeController extends Controller
@@ -37,19 +39,19 @@ class HikeController extends Controller
             'region' => 'required|min:5|max:30',
             'coordinates' => 'required|min:15|max:15',
             'difficulty' => 'required|integer|gte:0|lte:5',
-            'map' => 'required',
             'description' => 'required',
         ]);
+
         $hike = Hike::findOrFail($id);
 
         $hike->name = $request->name;
         $hike->region = $request->region;
         $hike->coordinates = $request->coordinates;
         $hike->difficulty = $request->difficulty;
-        $hike->map = $request->map;
+        $hike->map = $request->image;
         $hike->description = $request->description;
         $hike->validated = True;
-        $hike->submittedBy = Auth::user()->id; //TODO
+        //$hike->submittedBy = Auth::user()->id;
         $hike->update();
 
         return redirect()->route("admins.index");
@@ -63,7 +65,18 @@ class HikeController extends Controller
     public static function destroy($id)
     {
         $hike = Hike::findOrFail($id);
+
+        $imagePath ='assets/images/'.$hike->map;
+
+        if(File::exists($imagePath))
+        {
+            File::delete($imagePath);
+        }
+
         $hike->delete();
+
+
+
         return redirect()->route("admins.index");
     }
 
@@ -94,6 +107,8 @@ class HikeController extends Controller
     /**
      * Store the Hike in the Database
      *
+     * Image storage: https://dev.to/shanisingh03/how-to-upload-image-in-laravel-9--4dkf
+     *
      * @param  Request  $request
      * @return Response
      */
@@ -106,21 +121,26 @@ class HikeController extends Controller
             'region' => 'required|min:5|max:30',
             'coordinates' => 'required|min:15|max:15',
             'difficulty' => 'required|integer|gte:0|lte:5',
-            'map' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:5000000',
             'description' => 'required',
         ]);
+
+        $imageName = time().'_'.$request->image->getClientOriginalName();
+        $request->image->move(public_path('assets/images'), $imageName);
 
         $hike = new Hike();
         $hike->name = $request->name;
         $hike->region = $request->region;
         $hike->coordinates = $request->coordinates;
         $hike->difficulty = $request->difficulty;
-        $hike->map = $request->map;
+        $hike->map = $imageName;
         $hike->description = $request->description;
         $hike->validated = False;
-        $hike->submittedBy = Auth::user()->id; //TODO
+        $hike->submittedBy = Auth::user()->id;
 
         $hike->save();
+
+
 
         return redirect()
             ->route("hikes.index")
