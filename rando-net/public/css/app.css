@@ -1,11 +1,11 @@
 .checked
 {
     color : yellow;
-    font-size : 20px;
+    font-size : 1.2rem;
 }
 .unchecked
 {
-    font-size : 20px;
+    font-size : 1.2rem;
 }
 #hike:hover
 {
