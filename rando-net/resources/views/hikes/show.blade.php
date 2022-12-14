@@ -14,7 +14,7 @@
         @endfor
         <div class="m-5 d-flex justify-content-between">
             <!--{{$hike->map}}-->
-            <img src="/assets/images/placeholder.jpg" class="float-left" width="200" height="200" alt="hike img">
+            <img id="hikeimg" src="/assets/images/placeholder.jpg" class="float-left" alt="hike img">
             <div class="float-right">
                 <h5 class="display-4">Comments</h5>
                 <hr class="my-4">
