@@ -15,7 +15,7 @@ class HikeSeeder extends Seeder
      */
     public function run()
     {
-        Hike::truncate();
+        //Hike::truncate();
         $hikes = [
             [
                 "name" => "Marche sur les crêtes de Tête de Ran",

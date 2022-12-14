@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('hikes', function (Blueprint $table) {
-            $table->foreignId('submittedBy')->references('id')->on('users')->nullable()->constrained();
+        Schema::create('tags', function (Blueprint $table) {
+            $table->id();
+            $table->text('name');
         });
     }
 
@@ -25,9 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('hikes', function (Blueprint $table) {
-            $table->dropForeign(['submittedBy']);
-            $table->dropColumn('submittedBy');
-        });
+        Schema::dropIfExists('tags');
     }
 };

@@ -27,24 +27,24 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', [HikeController::class, 'index'])->name('hike');
 
 //ADMIN
-Route::middleware([CheckAdmin::class])->group(function(){
-    Route::get('/hikes/user_hikes',[HikeController::class, 'userHikes'])->name('hikes.user_hikes');
+Route::middleware([CheckAdmin::class])->group(function () {
+    Route::get('/hikes/user_hikes', [HikeController::class, 'userHikes'])->name('hikes.user_hikes');
     Route::resource('admins', AdminController::class);
     Route::resource('users', UserController::class);
     Route::resource('hikes', HikeController::class);
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    });
+});
 
 //USER
-Route::middleware([CheckUser::class])->group(function(){
-    Route::get('/hikes/user_hikes',[HikeController::class, 'userHikes'])->name('hikes.user_hikes');
+Route::middleware([CheckUser::class])->group(function () {
+    Route::get('/hikes/user_hikes', [HikeController::class, 'userHikes'])->name('hikes.user_hikes');
     Route::resource('hikes', HikeController::class);
     Route::resource('users', UserController::class);
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 //Non connected user
-Route::middleware([CheckVisitor::class])->group(function(){
+Route::middleware([CheckVisitor::class])->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
     Route::get('/signin', [AuthController::class, 'signin'])->name('signin');
@@ -52,11 +52,14 @@ Route::middleware([CheckVisitor::class])->group(function(){
 });
 
 //All
-Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.index');
+Route::get('/hikes', [HikeController::class, 'index'])->name('hikes.index');
 Route::get('/hikes/{hike}', [HikeController::class, 'show'])->name('hikes.show');
 //TODO WITH THE TAG Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.tag');
-    Route::get('/', function () {
-        return redirect()
-                     ->route("hikes.index");
-    });
+Route::get('/', function () {
+    return redirect()
+        ->route("hikes.index");
+});
 //Route::resource('users', UserController::class); //TODO when Dorian could think straight for once in his life
+
+Route::get('/show-tag', [TagController::class, 'index']);
+Route::post('/create-tag', [TagController::class, 'store']);
