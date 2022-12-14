@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hike;
-<<<<<<< HEAD
-
-=======
 use App\Models\Tag;
->>>>>>> f4b7187 (Tag schema)
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
@@ -96,10 +92,9 @@ class HikeController extends Controller
     {
         $hike = Hike::findOrFail($id);
 
-        $imagePath ='assets/images/'.$hike->map;
+        $imagePath = 'assets/images/' . $hike->map;
 
-        if(File::exists($imagePath))
-        {
+        if (File::exists($imagePath)) {
             File::delete($imagePath);
         }
 
@@ -155,7 +150,7 @@ class HikeController extends Controller
             'description' => 'required',
         ]);
 
-        $imageName = time().'_'.$request->image->getClientOriginalName();
+        $imageName = time() . '_' . $request->image->getClientOriginalName();
         $request->image->move(public_path('assets/images'), $imageName);
 
         $hike = new Hike();
