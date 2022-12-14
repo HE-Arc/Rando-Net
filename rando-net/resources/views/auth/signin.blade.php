@@ -31,7 +31,7 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-primary m-1">Sign in</button>
     </div>
     @if ($errors->any())
                         <div class="alert alert-danger mt-3 col-12">

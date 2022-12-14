@@ -33,12 +33,12 @@
     </div>
     @endif
     <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary m-1">Login</button>
     </div>
 </form>
 <form action="{{route("signin")}}" method="GET">
     <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary">Create Account</button>
+        <button type="submit" class="btn btn-primary m-1">Create Account</button>
     </div>
 </form>
 @endsection
