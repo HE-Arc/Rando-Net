@@ -19,11 +19,36 @@ class HikeController extends Controller
         return view("hikes.index", ["hikes" => $hikes]);
     }
 
-    public function show(Hike $hike) //used for debug purpous
+    /**
+     * Display a specific hike
+     *
+     * @return Response
+     */
+    public function show(Hike $hike)
     {
         return view('hikes.show', ['hike' => $hike]);
     }
 
+    /**
+     * Display all hikes submitted by the connected user
+     *
+     * @return Response
+     */
+    public function userHikes()
+    {
+        $hikes = Hike::where("submittedBy", Auth::user()->id)->get();
+        return view("hikes.user_hikes", ["hikes" => $hikes]);
+    }
+
+    /**
+     * Display a specific hike
+     *
+     * @return Response
+     */
+    public function displayHike(Hike $hike)
+    {
+        return view('hikes.show', ['hike' => $hike]);
+    }
     public function create()
     {
         //See if authors or tags are needed
@@ -49,7 +74,7 @@ class HikeController extends Controller
         $hike->map = $request->map;
         $hike->description = $request->description;
         $hike->validated = True;
-        $hike->submittedBy = Auth::user()->id; //TODO
+       // $hike->submittedBy = Auth::user()->id; //TODO
         $hike->update();
 
         return redirect()->route("admins.index");

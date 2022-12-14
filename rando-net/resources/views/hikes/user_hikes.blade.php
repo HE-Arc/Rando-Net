@@ -1,11 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-    <h1>Hikes</h1>
-
-<!-- ajouter une randonnée-->
-<a href="{{route("hikes.create")}}" class="btn btn-primary mb-2">Ajouter une randonnée</a>
-
+    <h1>Your submitted hikes</h1>
     <table class="table">
         <thead>
             <tr>
