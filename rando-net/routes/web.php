@@ -28,14 +28,18 @@ use Illuminate\Support\Facades\Route;
 
 //ADMIN
 Route::middleware([CheckAdmin::class])->group(function(){
+    Route::get('/hikes/user_hikes',[HikeController::class, 'userHikes'])->name('hikes.user_hikes');
     Route::resource('admins', AdminController::class);
+    Route::resource('users', UserController::class);
     Route::resource('hikes', HikeController::class);
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     });
 
 //USER
 Route::middleware([CheckUser::class])->group(function(){
+    Route::get('/hikes/user_hikes',[HikeController::class, 'userHikes'])->name('hikes.user_hikes');
     Route::resource('hikes', HikeController::class);
+    Route::resource('users', UserController::class);
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
@@ -49,12 +53,11 @@ Route::middleware([CheckVisitor::class])->group(function(){
 
 //All
 Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.index');
-//Route::get('/hikes',[HikeController::class, 'show'])->name('hikes.show'); -> TODO ajouter manuellement la route show pour voir les hikes
+Route::get('/hikes/{hike}', [HikeController::class, 'show'])->name('hikes.show');
 
 //TODO WITH THE TAG Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.tag');
     Route::get('/', function () {
         return redirect()
                      ->route("hikes.index");
     });
-
 //Route::resource('users', UserController::class); //TODO when Dorian could think straight for once in his life
