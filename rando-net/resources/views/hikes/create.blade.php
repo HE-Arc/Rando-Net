@@ -63,17 +63,17 @@
 
                             <div class="form-group col-6">
                                 <label for="inputDifficulty">Difficulty</label>
-                                <input type="text" name="difficulty" class="form-control" id="inputDifficulty" value="{{old('difficulty')}}">
+                                <input type="number" name="difficulty" class="form-control" id="inputDifficulty" min="1" max="5" value="{{old('difficulty')}}">
                             </div>
 
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label for="inputMap">Map</label>
-                                <input type="file" name="image" class="form-control" id="inputMap">
+                                <input type="file" name="image" class="form-control" id="inputMap" class="align-center">
                             </div>
 
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label for="inputDescription">Description</label>
-                                <input type="text" name="description" class="form-control" id="inputDescription" value="{{old('description')}}">
+                                <textarea  style="overflow:auto;resize:none" name="description" class="form-control" id="inputDescription" value="{{old('description')}}" cols="80" rows="5"></textarea>
                             </div>
 
                         </div>

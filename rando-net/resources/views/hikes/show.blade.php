@@ -13,8 +13,7 @@
                 <span class = "fa fa-star unchecked"></span>
         @endfor
         <div class="m-5 d-flex justify-content-between">
-            <!--{{$hike->map}}-->
-            <img id="hikeimg" src="/assets/images/placeholder.jpg" class="float-left" alt="hike img">
+            <img id="hikeimg" src="/assets/images/{{$hike->map}}" class="float-left" alt="hike img">
             <div class="float-right">
                 <h2 class="display-6">Comments</h2>
                 <hr class="my-4">

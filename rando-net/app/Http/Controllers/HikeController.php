@@ -73,7 +73,7 @@ class HikeController extends Controller
         $hike->region = $request->region;
         $hike->coordinates = $request->coordinates;
         $hike->difficulty = $request->difficulty;
-        $hike->map = $request->image;
+        //$hike->map = $request->image;
         $hike->description = $request->description;
         $hike->validated = True;
         //$hike->submittedBy = Auth::user()->id;
