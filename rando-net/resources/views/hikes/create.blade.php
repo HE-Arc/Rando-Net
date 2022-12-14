@@ -41,16 +41,10 @@
 
                                 <div class="form-group col-6">
                                     <label for="inputMap">Map</label>
-                                    <!-- il faut faire que le user puisse ajouter une image-->
-                                    <input type="text" name="map" class="form-control" id="inputMap"
-                                        value="{{ old('map') }}">
+                                    <input type="file" name="image" class="form-control" id="inputMap"
+                                        class="align-center">
                                 </div>
 
-                                <div class="form-group col-6">
-                                    <label for="inputDescription">Description</label>
-                                    <input type="text" name="description" class="form-control" id="inputDescription"
-                                        value="{{ old('description') }}">
-                                </div>
 
                                 {{-- Autre façon de faire des tags, à trouver la meilleure --}}
                                 <div class="form-group col-6">
@@ -61,26 +55,8 @@
                                             <option>{{ $tag->name }}</option>
                                         @endforeach
                                     </select>
-                                    <button type="button" class="btn btn-primary">Ajouter</button>
+                                    <button type="button" class="btn btn-primary mt-2">Ajouter</button>
                                 </div>
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="inputCoordinates">Coordinates</label>
-                                <input type="text" name="coordinates" class="form-control" id="inputCoordinates"
-                                    value="{{ old('coordinates') }}" onkeydown="addDefault(this, event);"
-                                    pattern="\d{3}'\d{3}\/\d{3}'\d{3}" placeholder="999'999/999'999" max=15>
-                            </div>
-
-                            <div class="form-group col-6">
-                                <label for="inputDifficulty">Difficulty</label>
-                                <input type="number" name="difficulty" class="form-control" id="inputDifficulty"
-                                    min="1" max="5" value="{{ old('difficulty') }}">
-                            </div>
-
-                            <div class="form-group col-12">
-                                <label for="inputMap">Map</label>
-                                <input type="file" name="image" class="form-control" id="inputMap"
-                                    class="align-center">
                             </div>
 
                             <div class="form-group col-12">
