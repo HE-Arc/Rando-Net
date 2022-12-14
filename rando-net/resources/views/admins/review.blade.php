@@ -40,12 +40,9 @@
                                         value="{{ $hike->difficulty }}">
                                 </div>
 
-                                <div class="form-group col-6">
-                                    <label for="inputMap">Map</label>
-                                    <!-- Need a way to have a drag and drop to save the image in the ressources of the app-->
-                                    <input type="text" name="map" class="form-control" id="inputMap"
-                                        value="{{ $hike->map }}">
-                                </div>
+                                <img src="/assets/images/{{ $hike->map }}" class="float-right" style="width:200px;" alt="hike img">
+
+                                <input name="map" class="form-control" id="inputMap" value="{{ $hike->map }}" type="hidden">
 
                                 <div class="form-group col-6">
                                     <label for="inputDescription">Description</label>
