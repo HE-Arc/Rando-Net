@@ -42,7 +42,7 @@ class AuthController extends Controller
         }else
         {
             return back()->withErrors([
-                "name" => "Incorrect Credentials",
+                "password" => "Incorrect Credentials",
            ]);
         }
     }

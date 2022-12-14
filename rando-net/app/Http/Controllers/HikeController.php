@@ -19,12 +19,11 @@ class HikeController extends Controller
         return view("hikes.index", ["hikes" => $hikes]);
     }
 
-    public function show() //used for debug purpous
+    public function show(Hike $hike) //used for debug purpous
     {
-        $hikes = Hike::all();
-
-        return view('hikes.index', ['hikes' => $hikes]);
+        return view('hikes.show', ['hike' => $hike]);
     }
+
     public function create()
     {
         //See if authors or tags are needed
