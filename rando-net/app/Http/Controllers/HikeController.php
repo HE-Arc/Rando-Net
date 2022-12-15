@@ -49,6 +49,9 @@ class HikeController extends Controller
      */
     public function displayHike(Hike $hike)
     {
+        $tags = [];
+
+
         return view('hikes.show', ['hike' => $hike]);
     }
     public function create()

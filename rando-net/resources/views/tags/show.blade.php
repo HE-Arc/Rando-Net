@@ -18,8 +18,11 @@
                 <td>{{ $hike->name }}</td>
                 <td>{{ $hike->region }}</td>
                 <td>{{ $hike->difficulty }}</td>
-                <td>{{ $tag }}</td>
-
+                <td>
+                    @foreach ($hike->tags as $tag)
+                        {{ $tag->name }}
+                    @endforeach
+                </td>
             </tr>
         @endforeach
     </table>

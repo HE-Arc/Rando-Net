@@ -28,9 +28,25 @@ class TagController extends Controller
             'tag' => 'required',
 
         ]);
-        $hikes= Hike::all();
-        return view("tags.show", ['hikes' => $hikes, 'tag' => $request->tag]);
-
+        print($request->tag);
+        /* Crime de guerre
+        $tag = $request->tag;
+        $hikes_new = array();
+        $hikes = Hike::All();
+        $i = 0;
+        foreach($hikes as $hike)
+        {
+            foreach($hike->tags as $tag)
+            {
+                if($tag->name == $request->tag)
+                {
+                    $hikes_new[$i] = $hike;
+                    $i = $i+1;
+                }
+            }
+        }*/
+        $hikes = Hike::join('hike_tag', 'hikes.id', '=', 'hike_tag.hike_id')->join('tags', 'tags.id', '=', 'hikes.id')->where('tags.id', $request->tag)->get(); //pas sur s'il faut get
+        return view("tags.show", ['hikes' => $hikes]);
     }
 
 }
