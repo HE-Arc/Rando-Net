@@ -17,8 +17,8 @@ class HikeSeeder extends Seeder
     {
         //Hike::truncate();
         $hikes = [
-            ['name' => 'Marche sur les crêtes de Tête de Ran', 'region' => 'Tête de Ran', 'coordinates' => '555\'844/211\'844', 'difficulty' => 2, 'map' => 'todo', 'description' => 'sé tré joli', 'validated' => false, 'submittedBy' => 1],
-            ['name' => 'Sentier des 5 lacs', 'region' => 'Zermatt', 'coordinates' => '624\'254/096\'817', 'difficulty' => 3, 'map' => 'todo', 'description' => 'Jolie vue sur le Matterhorn depuis le Stellisee', 'validated' => true, 'submittedBy' => 2]
+            ['name' => 'Marche sur les crêtes de Tête de Ran', 'region' => 'Tête de Ran', 'coordinates' => '555\'844/211\'844', 'difficulty' => 2, 'map' => 'placeholder.png', 'description' => 'sé tré joli', 'validated' => false, 'submittedBy' => 1],
+            ['name' => 'Sentier des 5 lacs', 'region' => 'Zermatt', 'coordinates' => '624\'254/096\'817', 'difficulty' => 3, 'map' => 'placeholder.png', 'description' => 'Jolie vue sur le Matterhorn depuis le Stellisee', 'validated' => true, 'submittedBy' => 2]
         ];
 
         foreach ($hikes as $hike) {
