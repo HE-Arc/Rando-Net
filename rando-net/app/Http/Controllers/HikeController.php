@@ -28,7 +28,8 @@ class HikeController extends Controller
      */
     public function show(Hike $hike)
     {
-        return view('hikes.show', ['hike' => $hike]);
+        $progressBar = [1 => "bg-success", 2 => "bg-info",3 => "",4 => "bg-warning",5 => "bg-danger",];
+        return view('hikes.show', ['hike' => $hike, 'progressBar' => $progressBar]);
     }
 
     /**
@@ -83,7 +84,7 @@ class HikeController extends Controller
         //$hike->submittedBy = Auth::user()->id;
         $hike->update();
 
-        $hike->categories()->detach();
+        $hike->tags()->detach();
         $tags = Tag::find($request->tags);
         $hike->tags()->attach($tags);
 
@@ -104,6 +105,8 @@ class HikeController extends Controller
         if (File::exists($imagePath)) {
             File::delete($imagePath);
         }
+
+        $hike->tags()->detach();
 
         $hike->delete();
 

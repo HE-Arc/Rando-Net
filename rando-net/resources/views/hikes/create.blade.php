@@ -35,8 +35,8 @@
 
                                 <div class="form-group col-6">
                                     <label for="inputDifficulty">Difficulty</label>
-                                    <input type="text" name="difficulty" class="form-control" id="inputDifficulty"
-                                        value="{{ old('difficulty') }}">
+                                    <input type="number" name="difficulty" class="form-control" id="inputDifficulty"
+                                        min='1' max='5' value="{{ old('difficulty') }}">
                                 </div>
 
                                 <div class="form-group col-6">
@@ -46,7 +46,7 @@
                                 </div>
 
 
-                                {{-- Autre façon de faire des tags, à trouver la meilleure --}}
+                                {{-- TODO Autre façon de faire des tags, à trouver la meilleure --}}
                                 <div class="form-group col-6">
                                     <label for="inputTag">Tags</label>
                                     <select class="form-select" name="tags" aria-label="Default select example"
@@ -61,8 +61,8 @@
 
                             <div class="form-group col-12">
                                 <label for="inputDescription">Description</label>
-                                <textarea style="overflow:auto;resize:none" name="description" class="form-control" id="inputDescription"
-                                    value="{{ old('description') }}" cols="80" rows="5"></textarea>
+                                <textarea style="overflow:auto;resize:none" name="description" class="form-control" id="inputDescription" cols="80"
+                                    rows="5">{{ old('description') }}</textarea>
                             </div>
 
                             @if ($errors->any())
