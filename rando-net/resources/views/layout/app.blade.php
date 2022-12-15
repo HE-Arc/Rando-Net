@@ -24,7 +24,7 @@
             <div class="d-flex" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tag</a>
+                        <a class="nav-link" href="{{ route('tags.index') }}">Tag</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('hikes.create') }}">Add</a>
@@ -46,10 +46,9 @@
                     </li>
 
                     <a class="navbar-brand" href="{{ route('hikes.user_hikes') }}"><?= Auth::user()->name ?></a>
-
+                    @endif
+                </ul>
             </div>
-            @endif
-            </ul>
         </div>
     </nav>
 
