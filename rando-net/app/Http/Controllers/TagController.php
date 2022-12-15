@@ -11,7 +11,6 @@ class TagController extends Controller
 {
     public function index()
     {
-        //FETCH ALL TAGS AND GIVE THEM TO THE VIEW
         $tags = Tag::all();
         return view("tags.research", ['tags' => $tags]);
 
@@ -28,24 +27,14 @@ class TagController extends Controller
             'tag' => 'required',
 
         ]);
-        print($request->tag);
-        /* Crime de guerre
-        $tag = $request->tag;
-        $hikes_new = array();
-        $hikes = Hike::All();
-        $i = 0;
-        foreach($hikes as $hike)
+        $hikes = Hike::join('hike_tag', 'hikes.id', '=', 'hike_tag.hike_id')->join('tags', 'tags.id', '=', 'hike_tag.tag_id')->where('tags.id', $request->tag)->select('hikes.id','hikes.name', 'hikes.region','hikes.difficulty')->get(); //pas sur s'il faut get
+
+        if(count($hikes)==0)
         {
-            foreach($hike->tags as $tag)
-            {
-                if($tag->name == $request->tag)
-                {
-                    $hikes_new[$i] = $hike;
-                    $i = $i+1;
-                }
-            }
-        }*/
-        $hikes = Hike::join('hike_tag', 'hikes.id', '=', 'hike_tag.hike_id')->join('tags', 'tags.id', '=', 'hikes.id')->where('tags.id', $request->tag)->get(); //pas sur s'il faut get
+            return redirect()
+                 ->route("tags.index")
+                 ->with("fail", "No hikes where found");
+        }
         return view("tags.show", ['hikes' => $hikes]);
     }
 

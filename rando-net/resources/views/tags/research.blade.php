@@ -10,18 +10,24 @@
                         Search a hike from a Tag
                     </div>
                     <div class="card-body">
-                        <div class="form-row">
+                        <div class="form-row align-items-center">
 
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label for="inputTag">Tags</label>
-                                <select class="form-select" name="tag" aria-label="Default select example"
-                                    id="inputTags">
-                                    @foreach ($tags->all() as $tag)
-                                        <option value="{{ $tag->id }}" selected>{{ $tag->name }}</option>
-                                    @endforeach
-                                </select>
+                                <div class="d-flex">
+
+                                    <select class="form-select" name="tag" aria-label="Default select example"
+                                        id="inputTags">
+                                        @foreach ($tags->all() as $tag)
+                                            <option value="{{ $tag->id }}" selected>{{ $tag->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="ml-4">
+
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-3">Search</button>
 
 
                             @if ($errors->any())

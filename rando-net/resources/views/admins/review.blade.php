@@ -1,16 +1,16 @@
 @extends('layout.app')
 
-@section("content")
-<!-- hikes.control -->
-<form action="{{route("hikes.update", $hike->id)}}" method="POST">
-    @csrf
-    @method("PUT")
+@section('content')
+    <!-- hikes.control -->
+    <form action="{{ route('hikes.update', $hike->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
         <div class="row">
             <div class="col-12 col-lg-6 offset-0 offset-lg-3">
                 <div class="card">
                     <div class="card-header">
-                        Correction of the Hike
+                        Hike correction
                     </div>
                     <div class="card-body">
                         <div class="form-row">
@@ -36,22 +36,27 @@
 
                                 <div class="form-group col-6">
                                     <label for="inputDifficulty">Difficulty</label>
-                                    <input type="number" name="difficulty" class="form-control" id="inputDifficulty"  min="1" max="5"
-                                        value="{{ $hike->difficulty }}">
+                                    <input type="number" name="difficulty" class="form-control" id="inputDifficulty"
+                                        min="1" max="5" value="{{ $hike->difficulty }}">
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="inputSubmittedBy">Submitted By</label>
-                                    <input type="text" name="difficulty" class="form-control" id="inputSubmittedBy" value="{{$user->name}}" disabled>
+                                    <input type="text" name="difficulty" class="form-control" id="inputSubmittedBy"
+                                        value="{{ $user->name }}" disabled>
                                 </div>
 
                                 <div class="form-group d-flex justify-content-center">
-                                    <img src="/assets/images/{{ $hike->map }}" style="width:60%; height:auto;" alt="hike img">
+                                    <img src="/assets/images/{{ $hike->map }}" style="width:60%; height:auto;"
+                                        alt="hike img">
                                 </div>
-                                <input name="map" class="form-control" id="inputMap" value="{{ $hike->map }}" type="hidden">
+                                <input name="map" class="form-control" id="inputMap" value="{{ $hike->map }}"
+                                    type="hidden">
+                                {{-- TODO Autre façon de faire des tags, à trouver la meilleure --}}
 
                                 <div class="form-group col-12">
                                     <label for="inputDescription">Description</label>
-                                    <textarea  name="description" class="form-control" id="inputDescription" style="overflow:auto;resize:none" cols="80" rows="5">{{$hike->description}}</textarea>
+                                    <textarea name="description" class="form-control" id="inputDescription" style="overflow:auto;resize:none" cols="80"
+                                        rows="5">{{ $hike->description }}</textarea>
                                 </div>
 
 
@@ -71,7 +76,7 @@
                             <!-- Both can submit the form but they'll each give a different value to know the action-->
                             <button type="submit" name="btnSubmit" class="btn btn-primary m-2"
                                 value="validate">Validate</button>
-                            <button type="submit" name="btnSubmit" class="btn btn-primary m-2"
+                            <button type="submit" name="btnSubmit" class="btn btn-danger m-2"
                                 value="reject">Reject</button>
 
                         </div>
