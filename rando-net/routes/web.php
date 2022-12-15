@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HikeController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckUser;
 use App\Http\Middleware\CheckVisitor;
@@ -54,12 +55,14 @@ Route::middleware([CheckVisitor::class])->group(function () {
 //All
 Route::get('/hikes', [HikeController::class, 'index'])->name('hikes.index');
 Route::get('/hikes/{hike}', [HikeController::class, 'show'])->name('hikes.show');
-//TODO WITH THE TAG Route::get('/hikes',[HikeController::class, 'index'])->name('hikes.tag');
 Route::get('/', function () {
     return redirect()
         ->route("hikes.index");
 });
-//Route::resource('users', UserController::class); //TODO when Dorian could think straight for once in his life
+//Route::resource('tags', TagController::class);
+Route::get('/tags/display', [TagController::class, 'displayHikes'])->name('tags.display');
+Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
 
-Route::get('/show-tag', [TagController::class, 'index']);
-Route::post('/create-tag', [TagController::class, 'store']);
+
+//Route::get('/show-tag', [TagController::class, 'index']);
+//Route::post('/create-tag', [TagController::class, 'store']);
