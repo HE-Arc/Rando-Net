@@ -17,15 +17,12 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()!=null)
-        {
+        if (Auth::user() != null) {
             //User is connected
             return $next($request);
-
         }
         return redirect()
-                 ->route("login")
-                 ->with("fail", "You are not connected");
-
+            ->route("login")
+            ->with("fail", "You are not connected");
     }
 }

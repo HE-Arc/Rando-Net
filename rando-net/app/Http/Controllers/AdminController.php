@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Hike;
 use App\Models\Tag;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -21,7 +20,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Display the form with the chosen hike.
+     * Display the form for the review with the chosen hike.
      *
      * @param  int  $id
      * @return Response
@@ -32,6 +31,10 @@ class AdminController extends Controller
         $user = User::where("id", $hike->submittedBy)->get();
         $tags = Tag::all();
 
-        return view("admins.review", ['hike' => $hike, 'user' => $user[0], 'tags' => $tags]);
+        return view("admins.review", [
+            "hike" => $hike,
+            "user" => $user[0],
+            "tags" => $tags,
+        ]);
     }
 }

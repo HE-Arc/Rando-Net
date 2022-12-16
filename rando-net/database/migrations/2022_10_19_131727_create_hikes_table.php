@@ -14,12 +14,12 @@ return new class extends Migration {
     {
         Schema::create("hikes", function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("region");
+            $table->string("name", 50);
+            $table->string("region", 30);
             $table->string("coordinates", 15);
             $table->integer("difficulty")->unsigned();
             $table->string("map");
-            $table->string("description");
+            $table->string("description", 1000);
             $table->boolean("validated");
             $table->timestamps();
         });

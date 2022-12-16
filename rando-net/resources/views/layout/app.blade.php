@@ -7,9 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rando-Net</title>
 
-    <!-- CSS test for the stars-->
     <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,8 +18,12 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{{ route('hikes.index') }}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="container-fluid justify-content-between">
-            <div class="d-flex" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('tags.index') }}">Tag</a>
@@ -34,20 +36,23 @@
                     </li>
                     @if (Auth::user() == null)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">User</a>
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
                     @else
                 </ul>
             </div>
-            <div class="d-flex" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">logout</a>
-                    </li>
+            <div>
+                <div class="collapse navbar-collapse" id="navbarNav">
 
-                    <a class="navbar-brand" href="{{ route('hikes.user_hikes') }}"><?= Auth::user()->name ?></a>
-                    @endif
-                </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}">logout</a>
+                        </li>
+
+                        <a class="navbar-brand" href="{{ route('hikes.user_hikes') }}"><?= Auth::user()->name ?></a>
+                        @endif
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>

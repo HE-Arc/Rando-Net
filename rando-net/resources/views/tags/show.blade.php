@@ -8,8 +8,6 @@
                 <th scope="col">Region</th>
                 <th scope="col">Difficulty</th>
                 <th scope="col">Tag</th>
-
-
             </tr>
         </thead>
 
