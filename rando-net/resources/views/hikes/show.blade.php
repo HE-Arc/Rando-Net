@@ -41,12 +41,14 @@
             <h1 class="display-6">Description</h1>
             <p class="lead">{{ $hike->description }}</p>
         </div>
-        <div class="d-flex m-4 justify-content-between">
-            <div class="container">
-                <p class="lead"><strong>Region : </strong>{{ $hike->region }}</p>
-            </div>
-            <div class="container">
-                <p class="lead"><strong>Coordinates : </strong>{{ $hike->coordinates }}</p>
+        <div class="m-5">
+            <div class="d-flex justify-content-between">
+                <div class="container">
+                    <p class="lead"><strong>Region : </strong>{{ $hike->region }}</p>
+                </div>
+                <div class="container">
+                    <p class="lead"><strong>Coordinates : </strong>{{ $hike->coordinates }}</p>
+                </div>
             </div>
         </div>
     </div>

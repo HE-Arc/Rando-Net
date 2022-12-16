@@ -24,7 +24,7 @@
                                     </select>
                                     <div class="ml-4">
 
-                                        <button type="submit" class="btn btn-primary">Search</button>
+                                        <button type="submit" class="btn btn-success">Search</button>
                                     </div>
                                 </div>
                             </div>

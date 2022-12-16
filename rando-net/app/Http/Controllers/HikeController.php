@@ -24,13 +24,26 @@ class HikeController extends Controller
     /**
      * Display a specific hike
      *
+     * @param Hike $hike
      * @return Response
      */
     public function show(Hike $hike)
     {
-        $progressBar = [1 => "bg-success", 2 => "bg-info",3 => "",4 => "bg-warning",5 => "bg-danger",];
+        /**
+         * Array used for difficulty display, colors in order: green->cyan->blue->orange->red
+         */
+        $progressBar = [
+            1 => "bg-success",
+            2 => "bg-info",
+            3 => "",
+            4 => "bg-warning",
+            5 => "bg-danger",
+        ];
 
-        return view('hikes.show', ['hike' => $hike, 'progressBar' => $progressBar]);
+        return view("hikes.show", [
+            "hike" => $hike,
+            "progressBar" => $progressBar,
+        ]);
     }
 
     /**
@@ -45,29 +58,32 @@ class HikeController extends Controller
     }
 
     /**
-     * Display a specific hike
+     * Display the form to create a hike
      *
      * @return Response
      */
-    public function displayHike(Hike $hike)
-    {
-        return view('hikes.show', ['hike' => $hike]);
-    }
     public function create()
     {
-        //See if authors or tags are needed
         $tags = Tag::all();
-        return view("hikes.create", ['tags' => $tags]);
+        return view("hikes.create", ["tags" => $tags]);
     }
 
+    /**
+     * Validate the edition of a hike by a admin user
+     *
+     * @param  Request  $request
+     * @param Integer $id
+     * @return Response
+     */
     public function edit(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|min:5|max:50',
-            'region' => 'required|min:5|max:30',
-            'coordinates' => 'required|min:15|max:15',
-            'difficulty' => 'required|integer|gte:0|lte:5',
-            'description' => 'required',
+            "name" => "required|string|min:1|max:50",
+            "region" => "required|string|min:1|max:30",
+            "coordinates" => "required|min:15|max:15",
+            "difficulty" => "required|integer|gte:1|lte:5",
+            "tags" => "required|exists:tags,id",
+            "description" => "required|string|min:10|max:1000",
         ]);
 
         $hike = Hike::findOrFail($id);
@@ -76,12 +92,11 @@ class HikeController extends Controller
         $hike->region = $request->region;
         $hike->coordinates = $request->coordinates;
         $hike->difficulty = $request->difficulty;
-        //$hike->map = $request->image;
         $hike->description = $request->description;
-        $hike->validated = True;
-        //$hike->submittedBy = Auth::user()->id;
+        $hike->validated = true;
         $hike->update();
 
+        //Delete attached Tags to attach new ones, avoids duplicates
         $hike->tags()->detach();
         $tags = Tag::find($request->tags);
         $hike->tags()->attach($tags);
@@ -91,24 +106,25 @@ class HikeController extends Controller
 
     /**
      * Delete the chosen hike from the Database
+     * Detach the tags and delete the images from file system
      *
      * @param  int  $id
+     * @return Response
      */
     public static function destroy($id)
     {
         $hike = Hike::findOrFail($id);
 
-        $imagePath = 'assets/images/' . $hike->map;
+        $imagePath = "assets/images/" . $hike->map;
 
         if (File::exists($imagePath)) {
             File::delete($imagePath);
         }
 
+        //Remove many to many relation before delete
         $hike->tags()->detach();
 
         $hike->delete();
-
-
 
         return redirect()->route("admins.index");
     }
@@ -125,10 +141,10 @@ class HikeController extends Controller
     public function update(Request $request, $id)
     {
         $status = "";
-        if ($_REQUEST['btnSubmit'] == "validate") {
+        if ($_REQUEST["btnSubmit"] == "validate") {
             HikeController::edit($request, $id);
             $status = "Admin validated hike successfully";
-        } else if ($_REQUEST['btnSubmit'] == "reject") {
+        } elseif ($_REQUEST["btnSubmit"] == "reject") {
             HikeController::destroy($id);
             $status = "Hike rejected successfully";
         }
@@ -139,27 +155,28 @@ class HikeController extends Controller
 
     /**
      * Store the Hike in the Database
+     * Add the image in the file system => "TIME_NAME.extension"
      *
      * Image storage: https://dev.to/shanisingh03/how-to-upload-image-in-laravel-9--4dkf
      *
      * @param  Request  $request
      * @return Response
      */
-
     public function store(Request $request)
     {
-
         $request->validate([
-            'name' => 'required|min:5|max:50',
-            'region' => 'required|min:5|max:30',
-            'coordinates' => 'required|min:15|max:15',
-            'difficulty' => 'required|integer|gte:0|lte:5',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:5000000',
-            'description' => 'required',
+            "name" => "required|string|min:1|max:50",
+            "region" => "required|string|min:1|max:30",
+            "coordinates" => "required|min:15|max:15",
+            "difficulty" => "required|integer|gte:1|lte:5",
+            "image" => "required|image|mimes:png,jpg,jpeg|max:5000000",
+            "tags" => "required|exists:tags,id",
+            "description" => "required|string|min:10|max:1000",
         ]);
 
-        $imageName = time() . '_' . $request->image->getClientOriginalName();
-        $request->image->move(public_path('assets/images'), $imageName);
+        //create unique name for image before storing it in public storage
+        $imageName = time() . "_" . $request->image->getClientOriginalName();
+        $request->image->move(public_path("assets/images"), $imageName);
 
         $hike = new Hike();
         $hike->name = $request->name;
@@ -168,11 +185,12 @@ class HikeController extends Controller
         $hike->difficulty = $request->difficulty;
         $hike->map = $imageName;
         $hike->description = $request->description;
-        $hike->validated = False;
+        $hike->validated = false;
         $hike->submittedBy = Auth::user()->id;
 
         $hike->save();
 
+        //Many to many relationship
         $tags = Tag::find($request->tags);
         $hike->tags()->attach($tags);
 

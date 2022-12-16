@@ -5,7 +5,7 @@
     <form action="{{ route('hikes.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
         <div class="row">
-            <div class="col-12 col-lg-6 offset-0 offset-lg-3">
+            <div class="col-12 col-lg-8 offset-0 offset-lg-2">
                 <div class="card">
                     <div class="card-header">
                         Nouvelle randonnée
@@ -45,8 +45,6 @@
                                         class="align-center">
                                 </div>
 
-
-                                {{-- TODO Autre façon de faire des tags, à trouver la meilleure --}}
                                 <div class="form-group col-6">
                                     <label for="inputTag">Tags</label>
                                     <select class="form-select" name="tags[]" multiple="multiple" id="inputTags">
@@ -73,7 +71,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+                            <button type="submit" class="btn btn-success mt-3">Envoyer</button>
                         </div>
                     </div>
                 </div>

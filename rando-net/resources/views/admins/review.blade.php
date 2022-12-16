@@ -1,11 +1,9 @@
 @extends('layout.app')
 
 @section('content')
-    <!-- hikes.control -->
     <form action="{{ route('hikes.update', $hike->id) }}" method="POST">
         @csrf
         @method('PUT')
-
         <div class="row">
             <div class="col-12 col-lg-6 offset-0 offset-lg-3">
                 <div class="card">
@@ -51,7 +49,7 @@
                                 </div>
                                 <input name="map" class="form-control" id="inputMap" value="{{ $hike->map }}"
                                     type="hidden">
-                                {{-- TODO Autre façon de faire des tags, à trouver la meilleure --}}
+
                                 <div class="form-group col-6">
                                     <label for="inputTag">Tags</label>
                                     <select class="form-select" name="tags[]" multiple="multiple" id="inputTags">
@@ -88,7 +86,7 @@
                                 </div>
                             @endif
                             <!-- Both can submit the form but they'll each give a different value to know the action-->
-                            <button type="submit" name="btnSubmit" class="btn btn-primary m-2"
+                            <button type="submit" name="btnSubmit" class="btn btn-success m-2"
                                 value="validate">Validate</button>
                             <button type="submit" name="btnSubmit" class="btn btn-danger m-2"
                                 value="reject">Reject</button>

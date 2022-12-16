@@ -17,8 +17,7 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()!=null)
-        {
+        if (Auth::user() != null) {
             if (Auth::user()->isAdmin) {
                 return $next($request);
             }
@@ -27,8 +26,7 @@ class CheckAdmin
                 ->with("fail", "You are not Admin");
         }
         return redirect()
-                 ->route("login")
-                 ->with("fail", "You are not connected");
-
+            ->route("login")
+            ->with("fail", "You are not connected");
     }
 }

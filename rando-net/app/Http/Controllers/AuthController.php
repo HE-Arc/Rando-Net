@@ -2,98 +2,119 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\Authenticate;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
-
-use function PHPUnit\Framework\isEmpty;
 
 class AuthController extends Controller
 {
-
+    /**
+     * Display the login page
+     *
+     * @return Response
+     */
     public function login()
     {
         return view("auth.login");
     }
 
+    /**
+     * Validate the authetification and connect the user to a session with Auth
+     *
+     * @param  Request  $request
+     * @return Response
+     */
     public function authenticate(Request $request)
     {
         $request->validate([
             "name" => "required|min:5|max:50",
-            "password" => "required",
+            "password" => "required|min:5",
         ]);
 
-        $credential = array(
-            'name'  => $request->get('name'),
-            'password' => $request->get('password')
-           );
+        $credential = [
+            "name" => $request->get("name"),
+            "password" => $request->get("password"),
+        ];
 
         if (Auth::attempt($credential)) {
             Auth::loginUsingId($request->name);
 
-            $request->session()->regenerate(); //Don't know if useful
+            $request->session()->regenerate();
             return redirect()
-                 ->route("hikes.index")
-                 ->with("success", "Logged in successfully");
-        }else
-        {
+                ->route("hikes.index")
+                ->with("success", "Logged in successfully");
+        } else {
             return back()->withErrors([
                 "password" => "Incorrect Credentials",
-           ]);
+            ]);
         }
     }
 
+    /**
+     * Display the sigin page
+     * Create a new account
+     *
+     * @return Response
+     */
     public function signin()
     {
         return view("auth.signin");
     }
 
+    /**
+     * Validate the signIn and redirect on the login page
+     *
+     * @param  Request  $request
+     * @return Response
+     */
     public function validateSignin(Request $request)
     {
         $request->validate([
             "name" => "required|min:5|max:50",
-            "password" => "required",
-            "confirmPassword" => "required",
+            "password" => "required|min:5",
+            "confirmPassword" => "required|min:5",
         ]);
 
-        if($request->password == $request->confirmPassword)
-        {
-            //Vérifier que le nom est unique
+        //Check that the password are the same
+        if ($request->password == $request->confirmPassword) {
+            //Check that the name is unique, so that we can't find someone with the same name in the DB
             $existingUser = User::where("name", $request->name)->get();
-            if(count($existingUser)===0) //User doesn't existe
-            {
+            if (count($existingUser) === 0) {
+                //User doesn't exist yet
                 $user = new User();
                 $user->name = $request->name;
                 $user->password = bcrypt($request->password);
-                $user->email = $request->name."@notreal.com";
+                $user->email = $request->name . "@notreal.com";
                 $user->isAdmin = 0;
                 $user->save();
 
                 return redirect()
                     ->route("login")
                     ->with("success", "Signed in successfully");
-            }else // A User was found
-            {
+            }
+            // A User was found
+            else {
                 return back()->withErrors([
                     "name" => "Already Existing user",
-               ]);
+                ]);
             }
-        }else{
-        return back()->withErrors([
-            "name" => "Not the same passwords",
-       ]);
+        } else {
+            return back()->withErrors([
+                "name" => "Not the same passwords",
+            ]);
+        }
     }
-}
 
+    /**
+     * Log out the user and redirect on the index page
+     *
+     * @return Response
+     */
     public function logout()
     {
         Auth::logout();
         return redirect()
-             ->route("hikes.index")
-             ->with("success", "logged out successfully");
+            ->route("hikes.index")
+            ->with("success", "logged out successfully");
     }
 }

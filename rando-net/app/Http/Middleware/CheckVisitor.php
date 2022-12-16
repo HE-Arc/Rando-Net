@@ -17,14 +17,12 @@ class CheckVisitor
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()==null)
-        {
+        if (Auth::user() == null) {
             //User is a visitor
             return $next($request);
-
         }
         return redirect()
-                 ->route("hikes.index")
-                 ->with("fail", "You are already connected");
+            ->route("hikes.index")
+            ->with("fail", "You are already connected");
     }
 }

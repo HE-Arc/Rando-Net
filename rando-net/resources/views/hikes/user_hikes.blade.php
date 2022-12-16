@@ -11,12 +11,12 @@
             </tr>
         </thead>
 
-    @foreach ($hikes as $hike)
-                        <tr id="hike" onclick="window.location='{{route('hikes.show', ['hike' => $hike])}}'">
-                        <td>{{ $hike->name }}</td>
-                        <td>{{ $hike->region }}</td>
-                        <td>{{ $hike->difficulty}}</td>
-                    </tr>
-            @endforeach
-</table>
+        @foreach ($hikes as $hike)
+            <tr id="hike" onclick="window.location='{{ route('hikes.show', ['hike' => $hike]) }}'">
+                <td>{{ $hike->name }}</td>
+                <td>{{ $hike->region }}</td>
+                <td>{{ $hike->difficulty }}</td>
+            </tr>
+        @endforeach
+    </table>
 @endsection
