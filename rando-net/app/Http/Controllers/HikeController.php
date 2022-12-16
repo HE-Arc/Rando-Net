@@ -29,6 +29,7 @@ class HikeController extends Controller
     public function show(Hike $hike)
     {
         $progressBar = [1 => "bg-success", 2 => "bg-info",3 => "",4 => "bg-warning",5 => "bg-danger",];
+
         return view('hikes.show', ['hike' => $hike, 'progressBar' => $progressBar]);
     }
 
@@ -50,9 +51,6 @@ class HikeController extends Controller
      */
     public function displayHike(Hike $hike)
     {
-        $tags = [];
-
-
         return view('hikes.show', ['hike' => $hike]);
     }
     public function create()
@@ -177,8 +175,6 @@ class HikeController extends Controller
 
         $tags = Tag::find($request->tags);
         $hike->tags()->attach($tags);
-
-
 
         return redirect()
             ->route("hikes.index")

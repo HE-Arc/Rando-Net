@@ -41,7 +41,7 @@
             <h1 class="display-6">Description</h1>
             <p class="lead">{{ $hike->description }}</p>
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex m-4 justify-content-between">
             <div class="container">
                 <p class="lead"><strong>Region : </strong>{{ $hike->region }}</p>
             </div>
