@@ -52,7 +52,21 @@
                                 <input name="map" class="form-control" id="inputMap" value="{{ $hike->map }}"
                                     type="hidden">
                                 {{-- TODO Autre façon de faire des tags, à trouver la meilleure --}}
+                                <div class="form-group col-6">
+                                    <label for="inputTag">Tags</label>
+                                    <select class="form-select" name="tags[]" multiple="multiple" id="inputTags">
+                                        @foreach ($tags->all() as $tag)
+                                            @if ($hike->tags->contains($tag))
+                                                <option selected value="{{ $tag->id }}">
+                                                    {{ $tag->name }}</option>
+                                            @else
+                                                <option value="{{ $tag->id }}">
+                                                    {{ $tag->name }}</option>
+                                            @endif
+                                        @endforeach
 
+                                    </select>
+                                </div>
                                 <div class="form-group col-12">
                                     <label for="inputDescription">Description</label>
                                     <textarea name="description" class="form-control" id="inputDescription" style="overflow:auto;resize:none" cols="80"
@@ -85,4 +99,5 @@
             </div>
         </div>
     </form>
+
 @endsection

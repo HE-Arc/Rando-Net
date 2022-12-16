@@ -49,13 +49,11 @@
                                 {{-- TODO Autre façon de faire des tags, à trouver la meilleure --}}
                                 <div class="form-group col-6">
                                     <label for="inputTag">Tags</label>
-                                    <select class="form-select" name="tags" aria-label="Default select example"
-                                        id="inputTags">
+                                    <select class="form-select" name="tags[]" multiple="multiple" id="inputTags">
                                         @foreach ($tags->all() as $tag)
-                                            <option>{{ $tag->name }}</option>
+                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                         @endforeach
                                     </select>
-                                    <button type="button" class="btn btn-primary mt-2">Ajouter</button>
                                 </div>
                             </div>
 

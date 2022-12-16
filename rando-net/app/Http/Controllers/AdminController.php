@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hike;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,8 @@ class AdminController extends Controller
     {
         $hike = Hike::findOrFail($id);
         $user = User::where("id", $hike->submittedBy)->get();
-        return view("admins.review", ['hike' => $hike, 'user' => $user[0]]);
+        $tags = Tag::all();
+
+        return view("admins.review", ['hike' => $hike, 'user' => $user[0], 'tags' => $tags]);
     }
 }
