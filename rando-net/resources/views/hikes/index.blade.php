@@ -6,7 +6,7 @@
         <h1>Hikes</h1>
 
         <!-- ajouter une randonnée-->
-        <a href="{{ route('hikes.create') }}" class="btn btn-primary mb-2">Add a Hike</a>
+        <a href="{{ route('hikes.create') }}" class="btn btn-success mb-2">Add a Hike</a>
 
         <table class="table">
             <thead>
