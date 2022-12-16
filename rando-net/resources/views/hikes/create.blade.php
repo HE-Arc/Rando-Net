@@ -45,8 +45,6 @@
                                         class="align-center">
                                 </div>
 
-
-                                {{-- Autre façon de faire des tags, à trouver la meilleure --}}
                                 <div class="form-group col-6">
                                     <label for="inputTag">Tags</label>
                                     <select class="form-select" name="tags" aria-label="Default select example"
@@ -56,30 +54,31 @@
                                         @endforeach
                                     </select>
                                     <button type="button" class="btn btn-primary mt-2">Ajouter</button>
+                                    <input type="text" class="bootstrap-tagsinput form-control" data-role="tagsinput"
+                                        aria-label="readonly input example" readonly />
                                 </div>
-                            </div>
 
-                            <div class="form-group col-12">
-                                <label for="inputDescription">Description</label>
-                                <textarea style="overflow:auto;resize:none" name="description" class="form-control" id="inputDescription"
-                                    value="{{ old('description') }}" cols="80" rows="5"></textarea>
-                            </div>
-
-                            @if ($errors->any())
-                                <div class="alert alert-danger mt-3 col-12">
-                                    <strong>Whoops!</strong> Il y a un problème avec vos entrées.<br><br>
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+                                <div class="form-group col-12">
+                                    <label for="inputDescription">Description</label>
+                                    <textarea style="overflow:auto;resize:none" name="description" class="form-control" id="inputDescription"
+                                        value="{{ old('description') }}" cols="80" rows="5"></textarea>
                                 </div>
-                            @endif
-                            <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger mt-3 col-12">
+                                        <strong>Whoops!</strong> Il y a un problème avec vos entrées.<br><br>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
     </form>
 
     <script>
