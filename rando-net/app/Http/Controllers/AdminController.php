@@ -15,8 +15,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $hikes = Hike::where("validated", false)->get();
-        return view("admins.index", ["hikes" => $hikes]);
+        $hikes = Hike::where("validated", false)->paginate(10);
+        return view("admins.index", compact("hikes"))->with(
+            "i",
+            (request()->input("page", 1) - 1) * 5
+        );
     }
 
     /**
@@ -28,12 +31,12 @@ class AdminController extends Controller
     public function show($id)
     {
         $hike = Hike::findOrFail($id);
-        $user = User::where("id", $hike->submittedBy)->get();
+        $user = User::where("id", $hike->submittedBy)->firstOrFail();
         $tags = Tag::all();
 
         return view("admins.review", [
             "hike" => $hike,
-            "user" => $user[0],
+            "user" => $user,
             "tags" => $tags,
         ]);
     }

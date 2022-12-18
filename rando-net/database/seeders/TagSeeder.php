@@ -15,7 +15,6 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        //Tag::truncate();
         $tags = [
             ['name' => 'Mountain'],
             ['name' => 'Lake'],

@@ -22,11 +22,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-//Route::get('/user', [UserController::class, 'index'])->name('user');
-//Route::get('/hikes' , [HikeController::class, 'index'])->name('hike');
-//Route::get('/', [HikeController::class, 'index'])->name('hike');
-
 //ADMIN
 Route::middleware([CheckAdmin::class])->group(function () {
     Route::get('/hikes/user_hikes', [HikeController::class, 'userHikes'])->name('hikes.user_hikes');
@@ -59,10 +54,7 @@ Route::get('/', function () {
     return redirect()
         ->route("hikes.index");
 });
-//Route::resource('tags', TagController::class);
+
 Route::get('/tags/display', [TagController::class, 'displayHikes'])->name('tags.display');
 Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
 
-
-//Route::get('/show-tag', [TagController::class, 'index']);
-//Route::post('/create-tag', [TagController::class, 'store']);

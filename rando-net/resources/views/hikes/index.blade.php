@@ -17,14 +17,19 @@
 
                 </tr>
             </thead>
+            <tbody>
 
-            @foreach ($hikes as $hike)
-                <tr id="hike" onclick="window.location='{{ route('hikes.show', ['hike' => $hike]) }}'">
-                    <td>{{ $hike->name }}</td>
-                    <td>{{ $hike->region }}</td>
-                    <td>{{ $hike->difficulty }}</td>
-                </tr>
-            @endforeach
+                @foreach ($hikes as $hike)
+                    <tr id="hike" onclick="window.location='{{ route('hikes.show', ['hike' => $hike]) }}'">
+                        <td>{{ $hike->name }}</td>
+                        <td>{{ $hike->region }}</td>
+                        <td>{{ $hike->difficulty }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+
         </table>
+        {!! $hikes->onEachSide(1)->links() !!}
+
     </div>
 @endsection

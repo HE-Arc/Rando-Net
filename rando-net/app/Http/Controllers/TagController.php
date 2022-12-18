@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Hike;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use App\Models\Tags;
 
 class TagController extends Controller
 {
@@ -18,10 +17,6 @@ class TagController extends Controller
     {
         $tags = Tag::all();
         return view("tags.research", ["tags" => $tags]);
-    }
-
-    public function show($id)
-    {
     }
 
     /**
@@ -53,6 +48,9 @@ class TagController extends Controller
                 ->route("tags.index")
                 ->with("fail", "No hikes where found");
         }
+
+
+        // No pagination was made because it doesn't work -> see readme for more information
         return view("tags.show", ["hikes" => $hikes]);
     }
 }

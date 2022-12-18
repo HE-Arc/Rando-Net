@@ -20,5 +20,7 @@
                 </tr>
             @endforeach
         </table>
+        {!! $hikes->onEachSide(1)->links() !!}
+
     </div>
 @endsection
