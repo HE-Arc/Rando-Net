@@ -17,8 +17,13 @@ class HikeController extends Controller
      */
     public function index()
     {
-        $hikes = Hike::where("validated", true)->get();
-        return view("hikes.index", ["hikes" => $hikes]);
+        $hikes = Hike::where("validated", true)->paginate(10);
+
+
+        return view("hikes.index", compact("hikes"))->with(
+            "i",
+            (request()->input("page", 1) - 1) * 5
+        );
     }
 
     /**
@@ -53,8 +58,11 @@ class HikeController extends Controller
      */
     public function userHikes()
     {
-        $hikes = Hike::where("submittedBy", Auth::user()->id)->get();
-        return view("hikes.user_hikes", ["hikes" => $hikes]);
+        $hikes = Hike::where("submittedBy", Auth::user()->id)->paginate(10);
+        return view("hikes.user_hikes", compact("hikes"))->with(
+            "i",
+            (request()->input("page", 1) - 1) * 5
+        );
     }
 
     /**
