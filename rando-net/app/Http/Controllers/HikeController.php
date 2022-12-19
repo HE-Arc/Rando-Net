@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class HikeController extends Controller
 {
-
     /**
      * Display all the validated Hikes.
      *
@@ -20,19 +19,7 @@ class HikeController extends Controller
     }
 
     /**
-     * Display all the Hikes.
-     *
-     * @return Response
-     */
-    public function show()
-    {
-        $hikes = Hike::all();
-
-        return view('hike.index', ['hikes' => $hikes]);
-    }
-
-    /**
-     * Display form for creation.
+     * Display form for creation of the hikes
      *
      * @return Response
      */
@@ -51,8 +38,7 @@ class HikeController extends Controller
     {
         $hike = Hike::findOrFail($id);
         $request->validate($hike->request_validator());
-        $hike->modify($request, True);
-
+        $hike->modify($request, true);
         $hike->update();
     }
 
@@ -86,7 +72,9 @@ class HikeController extends Controller
             HikeController::destroy($id);
             $status = "Hike rejected successfully";
         }
-        return redirect()->route("admin.index")->with("success", $status);
+        return redirect()
+            ->route("admin.index")
+            ->with("success", $status);
     }
 
     /**
