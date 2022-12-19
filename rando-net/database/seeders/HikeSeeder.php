@@ -41,13 +41,14 @@ class HikeSeeder extends Seeder
 
         foreach ($hikes as $hike) {
             Hike::create([
-                "name" => $hike["name"],
-                "region" => $hike["region"],
-                "coordinates" => $hike["coordinates"],
-                "difficulty" => $hike["difficulty"],
-                "map" => $hike["map"],
-                "description" => $hike["description"],
-                "validated" => $hike["validated"],
+                'name' => $hike['name'],
+                'region' => $hike['region'],
+                'coordinates' => $hike['coordinates'],
+                'difficulty' => $hike['difficulty'],
+                'map' => $hike['map'],
+                'description' => $hike['description'],
+                'validated' => $hike['validated'],
+                'submittedBy' => $hike['submittedBy'],
             ]);
         }
     }
