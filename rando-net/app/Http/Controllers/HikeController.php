@@ -80,6 +80,10 @@ class HikeController extends Controller
         //$hike->submittedBy = Auth::user()->id;
         $hike->update();
 
+        $hike->categories()->detach();
+        $tags = Tag::find($request->tags);
+        $hike->tags()->attach($tags);
+
         return redirect()->route("admins.index");
     }
 
@@ -164,6 +168,9 @@ class HikeController extends Controller
         $hike->submittedBy = Auth::user()->id;
 
         $hike->save();
+
+        $tags = Tag::find($request->tags);
+        $hike->tags()->attach($tags);
 
 
 
