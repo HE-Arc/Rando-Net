@@ -177,7 +177,7 @@ class HikeController extends Controller
             "region" => "required|string|min:1|max:30",
             "coordinates" => "required|min:15|max:15",
             "difficulty" => "required|integer|gte:1|lte:5",
-            "image" => "required|image|mimes:png,jpg,jpeg|max:5000000",
+            "image" => "required|image|mimes:png,jpg,jpeg|max:1000000",
             "tags" => "required|exists:tags,id",
             "description" => "required|string|min:10|max:1000",
         ]);

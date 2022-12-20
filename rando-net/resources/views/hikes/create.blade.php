@@ -42,7 +42,8 @@
                                 <div class="form-group col-6">
                                     <label for="inputMap">Map</label>
                                     <input type="file" name="image" class="form-control" id="inputMap"
-                                        class="align-center">
+                                        class="align-center" onchange="new_image_validation()">
+                                    <p>Size limit : 1'000 ko</p>
                                 </div>
 
                                 <div class="form-group col-6">
@@ -92,7 +93,7 @@
 
                 //number between 48 and 57
                 if (event.keyCode < 48 || event.keyCode > 57) {
-                    console.log("NOT NUMBER");
+                    console.log("Not a number");
                     event.preventDefault();
                     return false;
                 }
@@ -105,6 +106,26 @@
             }
 
 
+        }
+
+
+        /**
+         * The next two methods are here to prevent 413 error on file upload.
+         * Nginx server modifications does not affect the 1M limitation.
+         * Solution was to given by Cyrille Pollier
+         */
+        function upload_check(file) {
+            var max_size = 1024 * 1000;
+            return file.files[0].size > max_size;
+        }
+
+        function new_image_validation() {
+            var file = document.getElementById("inputMap");
+            if (upload_check(file)) {
+                alert("Image must be smaller than 1'000 Ko! \n Selected image size is " + file.files[0].size +
+                    " o.");
+                file.value = "";
+            }
         }
     </script>
 @endsection
