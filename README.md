@@ -17,6 +17,8 @@ A l'avenir, nous souhaiterions implémenter un espace de commentaires pour les r
 ## Problèmes rencontrés
 Lors de l'ajout de la pagination, nous avons constaté qu'il n'était possible que de voir la première page de résultat de recherche de randonnées par tag. L'url, au lieu d'avoir "?page=1" contenait "?_token ..... =1", ce qui ne permettait pas d'afficher les données récupérées. La pagination a été enlevée pour les tags, le temps à disposition se faisant trop court pour le rendu final. La pagination est en revanche fonctionnelle pour les randonnées dans la page principale, le profile de l'utilisateur et pour la vue des administrateurs.
 
+Lors du déploiement sur le serveur, nous avons constaté qu'une erreur 413 aparassait quand le formulaire de création de randonnées était soumis. Dans un premier temps, nous avons tenté de modifier les paramètres de client_max_body_size, post_max_size, upload_max_filesize des fichiers nginx.conf et php.ini sans succès. Nous constatons que l'erreur survient lors de l'upload d'une image de plus de 1Mo. Pour pallier à ce problème, nous avons repris un script écrit par Cyrille Pollier, qui permet de contrôler avant l'envoi du formulaire que l'image est trop volumineuse. Ceci n'est pas une solution optimale, elle permet en revanche de tout de même essayer les fonctionnalités du site sans problèmes.
+
 # Pour tester le projet
 Il existe un compte admin seedé pour tester les fonctionnalités du site.
 
